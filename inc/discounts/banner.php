@@ -56,4 +56,3 @@ function ib_promotion_banner() {
 
 	return $output;
 }
-add_shortcode( 'promotion_banner', 'ib_promotion_banner' );

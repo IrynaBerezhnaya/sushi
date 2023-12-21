@@ -346,7 +346,9 @@ if ( ! function_exists( 'storefront_page_content' ) ) {
 		?>
 		<div class="entry-content">
 			<?php
-            echo do_shortcode( '[promotion_banner]' );
+			if ( is_front_page() ) {
+				echo ib_promotion_banner();
+			}
 
 			$product_sections = get_field('product_sections');
 
