@@ -1,0 +1,210 @@
+.banner {
+  background: center no-repeat url(../../assets/img/background.png);
+  position: relative;
+  margin: 0 10px;
+  padding: 32px 10px;
+  margin: 10px 0 100px;
+
+  @include media-up($bp-ML) {
+    height: 496px;
+    padding: 0;
+  }
+
+  @include media-up($bp-XL) {
+    margin: 28px 0 200px;
+
+    &:before {
+      content: " ";
+      background: center no-repeat url(../../assets/img/Rectangle-73.png);
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: -200px;;
+      height: 150%;
+      background-position: center right;
+      z-index: 9;
+    }
+
+    &:after {
+      content: " ";
+      background: center no-repeat url(../../assets/img/Rectangle-74.png);
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      left: -200px;;
+      height: 150%;
+      background-position: center left;
+      z-index: 9;
+    }
+  }
+
+  .date {
+    position: absolute;
+    bottom: 0;
+    z-index: 99;
+    color: $color-2;
+    left: 50%;
+    transform: translate(-50%, 0);
+    font-size: 14px;
+
+    @include media-up($bp-M) {
+      bottom: 18px;
+    }
+  }
+
+  &__section {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+
+    @include media-up($bp-ML) {
+      &:before {
+        content: " ";
+        background: bottom no-repeat url(../../assets/img/overlay.png);
+        position: absolute;
+        bottom: -46px;
+        right: 0;
+        left: 14px;
+        height: 150%;
+        background-position: center bottom;
+        z-index: 9;
+      }
+    }
+
+    .plus {
+      background: center no-repeat url(../../assets/img/+.png);
+      background-color: $color-2;
+      padding: 22px;
+      border-radius: 50%;
+      margin-left: 10px;
+
+      @include media-up($bp-M) {
+        padding: 36px;
+        margin: 110px 0 0 12px;
+      }
+    }
+
+    &-right {
+      position: relative;
+
+      .total {
+        position: absolute;
+        top: -20px;
+        padding: 4px;
+        background-color: $color-2;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 800;
+        color: $color-1;
+        transform: rotate(4.649deg);
+        box-shadow: 0px 14px 50px 0px rgba(255, 103, 29, 0.10);
+        z-index: 9;
+
+        @include media-up($bp-SM) {
+          font-size: 14px;
+          padding: 6px 16px;
+        }
+      }
+
+      .total-discount {
+        position: absolute;
+        left: 32px;
+        padding: 0 14px;
+        background-color: $color-10;
+        border-radius: 50px;
+        font-size: 20px;
+        font-weight: 800;
+        color: $color-2;
+        transform: rotate(5.528deg);
+        box-shadow: 0px 14px 50px 0px rgba(255, 103, 29, 0.10);
+
+        @include media-up($bp-SM) {
+          font-size: 48px;
+        }
+
+        @include media-up($bp-ML) {
+          font-size: 54px;
+          padding: 4px 20px;
+        }
+      }
+
+      h2 {
+        font-family: $font-base;
+        display: inline-block;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        font-size: 12px;
+        font-weight: 800;
+        color: $color-10;
+        text-transform: uppercase;
+        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+        padding: 6px;
+        background-color: $color-2;
+        border-radius: 18px;
+
+        @include media-up($bp-M) {
+          left: 36px;
+          bottom: 50%;
+          font-size: 14px;
+          padding: 12px;
+        }
+      }
+    }
+
+    &-left {
+      background-color: $color-2;
+      border-radius: 26px;
+      text-align: center;
+      max-width: 236px;
+      transform: rotate(2.704deg);
+
+      @include media-up($bp-ML) {
+        max-width: 300px;
+      }
+
+      img {
+        max-width: 146px;
+        margin: 0 auto;
+        border-radius: 26px;
+
+        @include media-up($bp-M) {
+          max-width: 200px;
+        }
+      }
+
+      h2 {
+        font-size: 14px;
+        font-weight: 600;
+        padding-top: 8px;
+
+        @include media-up($bp-M) {
+          font-size: 16px;
+        }
+      }
+
+      p {
+        font-size: 10px;
+        padding-bottom: 12px;
+
+        @include media-up($bp-M) {
+          font-size: 12px;
+        }
+      }
+
+      .ingredients {
+        padding: 0 10px 14px;
+      }
+
+      .price {
+        .new-price {
+          font-size: 16px;
+          font-weight: 600;
+          color: $color-10;
+        }
+      }
+    }
+  }
+}

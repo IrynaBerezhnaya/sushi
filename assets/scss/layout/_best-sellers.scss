@@ -1,0 +1,157 @@
+.best-sellers {
+  text-align: center;
+
+  h2 {
+    color: $color-1;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 700;
+    padding: 50px;
+    text-transform: uppercase;
+    position: relative;
+
+    @include media-up($bp-ML) {
+      font-size: 28px;
+    }
+
+    &::before,
+    &::after {
+      content: " ";
+      background: center no-repeat url(../../assets/img/fish.png);
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      height: 100%;
+      background-position: center;
+      z-index: 9;
+    }
+
+    &::before {
+      top: 45%;
+
+      @include media-up($bp-SM) {
+        top: 0;
+        right: 60%;
+      }
+
+      @include media-up($bp-M) {
+        right: 50%;
+      }
+
+      @include media-up($bp-4XL) {
+        right: 28%;
+      }
+    }
+
+    &::after {
+      top: -45%;
+
+      @include media-up($bp-SM) {
+        top: 0;
+        right: -60%;
+      }
+
+      @include media-up($bp-M) {
+        right: -50%;
+      }
+
+      @include media-up($bp-4XL) {
+        right: -28%;
+      }
+    }
+  }
+
+  &__container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 60px 0;
+  }
+
+  &__item {
+    text-align: center;
+    margin: 10px;
+    border: 1px solid $color-2;
+    border-radius: 50px;
+    transition: 200ms ease-in-out;
+    text-decoration: none !important;
+    padding: 10px;
+
+    @include media-up($bp-SM) {
+      flex-basis: 40%;
+    }
+
+    @include media-up($bp-XL) {
+      flex: 0 0 28%;
+    }
+
+    @include media-up($bp-2XL) {
+      flex: 0 0 30%;
+      padding: 0;
+      margin: 20px;
+    }
+
+    &:hover {
+      border-radius: 50px;
+      border: 1px solid $color-16;
+      background: $color-2;
+      box-shadow: 0px 4px 15px 0px $color-17;
+    }
+
+    img {
+      width: 200px;
+      margin-top: 28px;
+    }
+
+    .title {
+      color: $color-1;
+      font-size: 20px;
+      font-weight: 700;
+
+      @include media-up($bp-L) {
+        font-size: 24px;
+      }
+    }
+
+    .ingredients,
+    .grams {
+      color: $color-11;
+      font-size: 12px;
+      padding-bottom: 32px;
+
+      @include media-up($bp-L) {
+        font-size: 14px;
+      }
+    }
+
+    .price {
+      color: $color-1;
+      font-size: 18px;
+      font-weight: 700;
+
+      @include media-up($bp-L) {
+        font-size: 20px;
+      }
+    }
+  }
+
+  .show-more-btn {
+    margin: 0 auto;
+    border-radius: 24px;
+    background: $color-15;
+    color: $color-2;
+    padding: 15px 40px;
+    font-size: 16px;
+    transition: 200ms ease-in-out;
+    text-decoration: none !important;
+
+    @include media-up($bp-L) {
+      padding: 22px 56px;
+    }
+
+    &:hover {
+      background: $color-3;
+    }
+  }
+}

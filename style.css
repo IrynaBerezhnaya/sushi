@@ -1,0 +1,11 @@
+/*
+  Theme Name: Storefront Child
+  Theme URI: https://test-wp-site.web-dev.team/
+  Description: <strong>Storefront Child Theme</strong>
+  Version: 1.0.0
+  Author: Iryna Berezhna
+  Template: storefront
+*/
+
+@import url('../storefront/style.css');
+@import url("./assets/scss/style.css");

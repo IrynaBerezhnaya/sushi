@@ -1,0 +1,42 @@
+//font-face
+@mixin font-face($name, $path, $weight: null, $style: null, $exts: ttf) {
+  $src: null;
+
+  $extmods: (
+    eot: "?",
+    svg: "#" + str-replace($name, " ", "_")
+  );
+
+  $formats: (
+    otf: "opentype",
+    ttf: "truetype"
+  );
+
+  @each $ext in $exts {
+    $extmod: if(map-has-key($extmods, $ext), $ext + map-get($extmods, $ext), $ext);
+    $format: if(map-has-key($formats, $ext), map-get($formats, $ext), $ext);
+    $src: append($src, url(quote($path + "." + $extmod)) format(quote($format)), comma);
+  }
+
+  @font-face {
+    font-family: quote($name);
+    font-style: $style;
+    font-weight: $weight;
+    src: $src;
+  }
+}
+
+@include font-face("OpenSans-Regular", "../fonts/OpenSans-Regular");
+@include font-face("Michroma-Regular", "../fonts/Michroma-Regular");
+@include font-face("Montserrat-Bold", "../fonts/Montserrat-Bold");
+@include font-face("Montserrat-ExtraBold", "../fonts/Montserrat-ExtraBold");
+@include font-face("Montserrat-Medium", "../fonts/Montserrat/Montserrat-Medium");
+@include font-face("Montserrat-Regular", "../fonts/Montserrat/Montserrat-Regular");
+@include font-face("Montserrat-Black", "../fonts/Montserrat/Montserrat-Black");
+@include font-face("Montserrat-Thin", "../fonts/Montserrat/Montserrat-Thin");
+@include font-face("Lato-Black", "../fonts/Lato/Lato-Black");
+@include font-face("Lato-Bold", "../fonts/Lato/Lato-Bold");
+@include font-face("Lato-BoldItalic", "../fonts/Lato/Lato-BoldItalic");
+@include font-face("Lato-Italic", "../fonts/Lato/Lato-Italic");
+@include font-face("Lato-Regular", "../fonts/Lato/Lato-Regular");
+@include font-face("Lato-Light", "../fonts/Lato/Lato-Light");
