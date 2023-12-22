@@ -21,23 +21,25 @@
 	$footer_socials = get_field('footer_socials', 'option');
 	$footer_text    = get_field('footer_text', 'option');
 
-	if ( ! empty( $footer_images ) ) :
-		if ( ! empty( $footer_title ) ) : ?>
-			<h2 class="title"><?php echo $footer_title; ?></h2>
-		<?php endif; ?>
-		<div class="payment-method">
-			<?php foreach ($footer_images as $item) {
-				$text = $item['text'];
-				$image = $item['image'];
-				if ( $text && $image ) :?>
-				<div class="payment-method__item" style="--bg-desktop: url( <?php echo esc_url($image['url']); ?> )">
-					<?php if ( ! empty( $text ) ) : ?>
-						<p><?php echo $text; ?></p>
+	if ( is_front_page() || is_product_category() ) :
+		if ( ! empty( $footer_images ) ) :
+			if ( ! empty( $footer_title ) ) : ?>
+				<h2 class="title"><?php echo $footer_title; ?></h2>
+			<?php endif; ?>
+			<div class="payment-method">
+				<?php foreach ($footer_images as $item) {
+					$text = $item['text'];
+					$image = $item['image'];
+					if ( $text && $image ) :?>
+					<div class="payment-method__item" style="--bg-desktop: url( <?php echo esc_url($image['url']); ?> )">
+						<?php if ( ! empty( $text ) ) : ?>
+							<p><?php echo $text; ?></p>
+						<?php endif; ?>
+					</div>
 					<?php endif; ?>
-				</div>
-				<?php endif; ?>
-			<?php } ?>
-		</div>
+				<?php } ?>
+			</div>
+		<?php endif; ?>
 	<?php endif; ?>
 
 	<div class="footer">
