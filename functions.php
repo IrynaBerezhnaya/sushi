@@ -30,6 +30,7 @@ add_action( 'admin_enqueue_scripts', 'mb_admin_enqueue_scripts' );
 require 'inc/storefront-template-functions.php';
 require 'inc/discounts/banner.php';
 require 'template-parts/content/best-sellers.php';
+require 'inc/checkout.php';
 
 /**
  * Load WooCommerce compatibility file.
