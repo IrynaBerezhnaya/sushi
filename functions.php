@@ -32,6 +32,9 @@ require 'inc/discounts/banner.php';
 require 'template-parts/content/best-sellers.php';
 require 'inc/checkout.php';
 
+//master test
+
+
 /**
  * Load WooCommerce compatibility file.
  */
