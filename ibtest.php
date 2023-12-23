@@ -15,4 +15,3 @@ echo '<strong>' . esc_html__( 'Total:', 'woocommerce' ) . '</strong> ' . WC()->c
 }
 
 //add_action ('woocommerce_widget_shopping_cart_total', 'ib_woocommerce_widget_shopping_cart_subtotal');
-
