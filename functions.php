@@ -1,6 +1,6 @@
 <?php
 if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly
+	exit;
 }
 
 /**
@@ -26,11 +26,9 @@ function mb_admin_enqueue_scripts() {
 }
 add_action( 'admin_enqueue_scripts', 'mb_admin_enqueue_scripts' );
 
-
-require 'inc/storefront-template-functions.php';
-require 'inc/discounts/banner.php';
-require 'template-parts/content/best-sellers.php';
 require 'inc/checkout.php';
+require 'inc/home-page.php';
+require 'inc/woocommerce.php';
 
 //master test
 
@@ -809,43 +807,6 @@ add_filter( 'woocommerce_available_variation', 'ib_change_qty_available_variatio
  */
 add_filter( 'woocommerce_sale_flash', '__return_null' );
 
-/**
- * Display WooCommerce product categories with thumbnails in a menu
- */
-function ib_display_categories_menu() {
-	$specific_categories = array( 'actions', 'sets', 'rolls', 'baked-rolls', 'wok', 'sushi', 'salad', 'soup', 'business-lanch', 'drinks', 'desserts', 'other'  );
-	$args = array(
-		'taxonomy'     => 'product_cat',
-		'title_li'     => '',
-		'hide_empty'   => false,
-		'slug'         => $specific_categories,
-	);
-
-	$product_categories = get_categories($args);
-
-	if ($product_categories) {
-		echo '<ul class="categories-menu__container swiper-wrapper">';
-
-		foreach ($product_categories as $category) {
-			$thumbnail_id = get_term_meta($category->term_id, 'thumbnail_id', true);
-			$image_active = get_field('thumbnail_hover', 'product_cat_' . $category->term_id);
-			$image = wp_get_attachment_url($thumbnail_id);
-			$is_current = is_product_category($category->slug);
-
-			echo '<li class="' . ($is_current ? 'active' : '') . ' swiper-slide">';
-			echo '<a href="' . get_term_link($category) . '" class="categories-menu__link">';
-			if ($is_current && $image_active) {
-				echo '<img src="' . $image_active['url'] . '" class="style-svg" alt="' . $category->name . '" />';
-			} elseif ($image) {
-				echo '<img src="' . $image . '" class="style-svg" alt="' . $category->name . '" />';
-            }
-			echo $category->slug === 'actions' ? $category->name . '</a>' : '<span class="categories-menu__category-name">' . $category->name . '</span></a>';
-			echo '</li>';
-		}
-		echo '</ul>';
-	}
-}
-
 if ( ! function_exists( 'storefront_primary_navigation' ) ) {
 	/**
 	 * Display Primary Navigation
@@ -883,7 +844,13 @@ function ib_remove_functions() {
 	remove_action( 'storefront_header', 'storefront_site_branding', 20 );
 	remove_action( 'storefront_header', 'storefront_product_search', 40 );
 	remove_action( 'storefront_header', 'storefront_header_cart', 60 );
-//	remove_action( 'storefront_homepage', 'storefront_homepage_header', 10 );
+	remove_action( 'storefront_homepage', 'storefront_homepage_header', 10 );
+    remove_action( 'homepage', 'storefront_product_categories', 20 );
+    remove_action( 'homepage', 'storefront_featured_products', 40 );
+    remove_action( 'homepage', 'storefront_on_sale_products', 60 );
+    remove_action( 'homepage', 'storefront_best_selling_products', 70 );
+    remove_action( 'homepage', 'storefront_popular_products', 50 );
+    remove_action( 'homepage', 'storefront_recent_products', 30 );
 }
 add_action('init' , 'ib_remove_functions' );
 
