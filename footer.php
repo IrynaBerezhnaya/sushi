@@ -33,7 +33,7 @@
 					if ( $text && $image ) :?>
 					<div class="payment-method__item" style="--bg-desktop: url( <?php echo esc_url($image['url']); ?> )">
 						<?php if ( ! empty( $text ) ) : ?>
-							<p><?php echo $text; ?></p>
+							<h2><?php echo $text; ?></h2>
 						<?php endif; ?>
 					</div>
 					<?php endif; ?>
