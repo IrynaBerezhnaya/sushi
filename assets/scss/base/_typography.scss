@@ -23,4 +23,138 @@ body {
     font-family: var(--font-primary);
 }
 
+h2 {
+    font-family: $font-dela-gothic;
+    color: $color-1;
+    text-align: center;
+    font-size: 14px;
+    padding: 50px;
+    text-transform: uppercase;
+    position: relative;
+
+    @include media-up($bp-M) {
+        font-size: 20px;
+    }
+
+    @include media-up($bp-L) {
+        font-size: 26px;
+    }
+}
+
+p {
+    font-family: $font-light;
+    font-size: 14px;
+    color: $color-11;
+}
+
+.storefront-product-section {
+    > h2 {
+        &::before,
+        &::after {
+            content: " ";
+            background: center no-repeat url(../../assets/img/fish.png);
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            height: 100%;
+            z-index: 9;
+        }
+
+        &::before {
+            top: 45%;
+
+            @include media-up($bp-SM) {
+                top: 0;
+                right: 60%;
+            }
+
+            @include media-up($bp-M) {
+                right: 50%;
+            }
+
+            @include media-up($bp-4XL) {
+                right: 26%;
+            }
+        }
+
+        &::after {
+            top: -45%;
+
+            @include media-up($bp-SM) {
+                top: 0;
+                right: -60%;
+            }
+
+            @include media-up($bp-M) {
+                right: -50%;
+            }
+
+            @include media-up($bp-4XL) {
+                right: -28%;
+            }
+        }
+    }
+}
+
+ul.products {
+    padding: 10px;
+}
+
+ul.products li.product {
+    border: 1px solid $color-2;
+    border-radius: 50px;
+    transition: 200ms ease-in-out;
+
+    @include media-up($bp-XL) {
+        &:hover {
+            border-radius: 50px;
+            border: 1px solid $color-16;
+            background: $color-2;
+            box-shadow: 0 4px 15px 0 $color-17;
+        }
+    }
+
+    img {
+        width: auto;
+        margin-top: 28px;
+        height: 216px;
+    }
+
+    .ingredients,
+    .grams {
+        padding-bottom: 22px;
+    }
+
+    .price {
+        font-family: $font-bold;
+        color: $color-1;
+        font-size: 16px;
+        font-weight: 700;
+        margin-bottom: 0;
+
+        @include media-up($bp-L) {
+            font-size: 24px;
+        }
+    }
+}
+
+ul.products li.product .woocommerce-loop-product__title {
+    font-family: $font-bold;
+    text-transform: none;
+    font-size: 14px;
+    padding: 10px;
+    margin-bottom: 4px;
+    font-weight: 700;
+
+    @include media-up($bp-M) {
+        padding: 22px 10px 0;
+        font-size: 20px;
+        margin-bottom: 6px;
+    }
+
+    @include media-up($bp-L) {
+        font-size: 26px;
+    }
+}
 

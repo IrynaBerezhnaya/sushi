@@ -1,5 +1,9 @@
 .site-header {
-  background-color: #a8b1ec;
+  background-color: $color-2;
+}
+
+header .col-full {
+  max-width: 100%;
 }
 
 .hidden {
@@ -75,5 +79,11 @@ a, button, input {
   &:focus,
   &:focus-visible {
     outline: none;
+  }
+}
+
+.woocommerce .product {
+  .add_to_cart_button  {
+    display: none;
   }
 }

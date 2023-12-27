@@ -2,16 +2,17 @@
   text-align: center;
 
   h2 {
+    font-family: $font-dela-gothic;
     color: $color-1;
     text-align: center;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 700;
     padding: 50px;
     text-transform: uppercase;
     position: relative;
 
     @include media-up($bp-ML) {
-      font-size: 28px;
+      font-size: 26px;
     }
 
     &::before,
@@ -23,7 +24,6 @@
       right: 0;
       left: 0;
       height: 100%;
-      background-position: center;
       z-index: 9;
     }
 
@@ -40,7 +40,7 @@
       }
 
       @include media-up($bp-4XL) {
-        right: 28%;
+        right: 32%;
       }
     }
 
@@ -57,7 +57,7 @@
       }
 
       @include media-up($bp-4XL) {
-        right: -28%;
+        right: -34%;
       }
     }
   }
@@ -96,7 +96,7 @@
       border-radius: 50px;
       border: 1px solid $color-16;
       background: $color-2;
-      box-shadow: 0px 4px 15px 0px $color-17;
+      box-shadow: 0 4px 15px 0 $color-17;
     }
 
     img {

@@ -33,52 +33,14 @@ $color-15: #1e114a;
 $color-16: rgba(42, 26, 94, 0.40);
 $color-17: rgba(0, 0, 0, 0.05);
 
-$color-18: #ffffff33;
-$color-19: #b3bcf3;
-$color-20: #575760;
-$color-21: #666666;
-$color-22: rgba(51,51,51,0.65);
-$color-23: #111111;
-$color-24: rgba(255, 255, 255, 0.797);
-$color-25: rgb(0 0 0 / 61%);
-$color-26: rgb(0 0 0 / 71%);
-$color-27: rgb(0 0 0 / 40%);
-$color-28: rgba(0, 0, 0, 0.709);
-$color-29: rgb(0 0 0 / 70%);
-$color-30: rgb(0 0 0 / 54%);
-$color-31: rgb(0 0 0 / 45%);
-$color-32: #999999;
-$color-33: #dddddd;
-$color-34: rgb(0 0 0 / 10%);
-$color-35: #333;
-$color-36: #777777;
-$color-37: #cc0000;
-$color-38: #fff;
-$color-39: #e0debf;
-$color-40: #232325;
-$color-41: #F3F3F3;
-$color-42: #3A3A3E;
-$color-43: #7E7E87;
-$color-44: #151517;
-
 //Font Size
 $font-size: 16;
 
 //Fonts
-$font-mont-bold: 'Montserrat-Bold', sans-serif;
-$font-mont-extrabold: 'Montserrat-ExtraBold', sans-serif;
-$font-mont-med: 'Montserrat-Medium', sans-serif;
-$font-mont-reg: 'Montserrat-Regular', sans-serif;
-$font-mont-black: 'Montserrat-Black', sans-serif;
-$font-mont-thin: 'Montserrat-Thin', sans-serif;
 $font-base: 'OpenSans-Regular', sans-serif;
-$font-michroma: 'Michroma-Regular', sans-serif;
-// $font-base: 'Lato-Regular', sans-serif;
-$font-light: 'Lato-Light', sans-serif;
-$font-bold: 'Lato-Bold', sans-serif;
-$font-bolditalic: 'Lato-BoldItalic', sans-serif;
-$font-black: 'Lato-Black', sans-serif;
-$font-italic: 'Lato-Italic', sans-serif;
+$font-light: 'OpenSans-Light', sans-serif;
+$font-bold: 'OpenSans-Bold', sans-serif;
+$font-dela-gothic: 'DelaGothicOne-Regular', sans-serif;
 
 //Transition
 $transition-linear: all 0.3s linear;

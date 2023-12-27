@@ -51,11 +51,9 @@ body .navigation-branding {
       transition: 200ms ease-in-out;
       width: auto;
       height: auto;
-      padding: 12px 0;
 
       @include media-up($bp-XL) {
         align-items: end;
-        padding: 24px 36px;
 
         &:not(:first-child):hover {
           background: $color-12;
@@ -81,12 +79,17 @@ body .navigation-branding {
     text-transform: uppercase;
     color: $color-3;
     font-weight: 800;
+    padding: 12px 0;
+
+    @include media-up($bp-XL) {
+      padding: 24px 36px;
+    }
   }
 
   &__category-name {
     display: none;
     position: absolute;
-    bottom: -46px;
+    bottom: -28px;
     left: 50%;
     transform: translateX(-50%);
     background-color: $color-2;
@@ -141,7 +144,7 @@ body .navigation-branding {
 
 .storefront-primary-navigation {
   position: relative;
-  background-color: $color-38;
+  background-color: $color-2;
 
   .main-navigation {
     display: none;
@@ -167,7 +170,7 @@ body .navigation-branding {
       text-decoration: underline;
 
       &:hover {
-        color: $color-20;
+        color: $color-12;
       }
     }
   }

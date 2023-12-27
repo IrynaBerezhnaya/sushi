@@ -3,7 +3,7 @@
   flex-wrap: wrap;
   align-items: baseline;
   letter-spacing: 4px;
-  font-family: $font-michroma;
+  font-family: $font-base;
   list-style: none;
 
   li {
@@ -11,7 +11,7 @@
     font-size: 14px;
     text-decoration: none;
     color: $color-8;
-    font-family: $font-michroma;
+    font-family: $font-base;
     text-align: left;
     letter-spacing: -0.4px;
     transition: $transition-ease;

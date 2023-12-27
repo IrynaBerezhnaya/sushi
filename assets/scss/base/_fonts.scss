@@ -26,17 +26,7 @@
   }
 }
 
+@include font-face("DelaGothicOne-Regular", "../fonts/DelaGothicOne-Regular");
 @include font-face("OpenSans-Regular", "../fonts/OpenSans-Regular");
-@include font-face("Michroma-Regular", "../fonts/Michroma-Regular");
-@include font-face("Montserrat-Bold", "../fonts/Montserrat-Bold");
-@include font-face("Montserrat-ExtraBold", "../fonts/Montserrat-ExtraBold");
-@include font-face("Montserrat-Medium", "../fonts/Montserrat/Montserrat-Medium");
-@include font-face("Montserrat-Regular", "../fonts/Montserrat/Montserrat-Regular");
-@include font-face("Montserrat-Black", "../fonts/Montserrat/Montserrat-Black");
-@include font-face("Montserrat-Thin", "../fonts/Montserrat/Montserrat-Thin");
-@include font-face("Lato-Black", "../fonts/Lato/Lato-Black");
-@include font-face("Lato-Bold", "../fonts/Lato/Lato-Bold");
-@include font-face("Lato-BoldItalic", "../fonts/Lato/Lato-BoldItalic");
-@include font-face("Lato-Italic", "../fonts/Lato/Lato-Italic");
-@include font-face("Lato-Regular", "../fonts/Lato/Lato-Regular");
-@include font-face("Lato-Light", "../fonts/Lato/Lato-Light");
+@include font-face("OpenSans-Light", "../fonts/OpenSans-Light");
+@include font-face("OpenSans-Bold", "../fonts/OpenSans-Bold");

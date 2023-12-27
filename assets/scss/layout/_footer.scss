@@ -3,14 +3,10 @@
 
     h2 {
         color: $color-1;
-        text-align: center;
-        font-size: 18px;
-        font-weight: 700;
-        padding: 50px;
-        text-transform: uppercase;
+        padding: 10px 10px 60px;
 
-        @include media-up($bp-ML) {
-            font-size: 28px;
+        @include media-up($bp-L) {
+            padding: 10px 10px 100px;
         }
     }
 
@@ -36,20 +32,6 @@
 
             @include media-up($bp-ML) {
                 height: 405px;
-            }
-
-            p {
-                color: $color-1;
-                font-size: 18px;
-                font-weight: 700;
-                padding: 25px;
-                text-transform: uppercase;
-
-                @include media-up($bp-ML) {
-                    font-size: 28px;
-                    text-align: center;
-                    padding: 50px;
-                }
             }
         }
     }
@@ -88,10 +70,13 @@
         }
 
         p {
-            font-size: 14px;
+            font-family: $font-base;
+            color: $color-2;
+            transition: $transition-ease;
+            font-size: 12px;
 
             @include media-up($bp-XL) {
-                font-size: 20px;
+                font-size: 14px;
             }
         }
     }
@@ -118,13 +103,14 @@
             }
 
             &-link {
+                font-family: $font-base;
                 color: $color-2 !important;
                 transition: $transition-ease;
                 text-decoration: none;
-                font-size: 14px;
+                font-size: 12px;
 
                 @include media-up($bp-XL) {
-                    font-size: 18px;
+                    font-size: 14px;
                 }
             }
         }
@@ -133,7 +119,7 @@
 
 .coming-soon {
     height: calc(100vh - 235px);
-    background-color: $color-38;
+    background-color: $color-2;
     width: auto;
     display: flex;
     justify-content: center;
@@ -141,7 +127,7 @@
 
     p {
         font-size: 54px;
-        font-family: $font-michroma;
+        font-family: $font-base;
         letter-spacing: 0;
         font-weight: 600;
         text-align: center;

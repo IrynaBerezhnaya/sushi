@@ -1,17 +1,17 @@
 .banner {
   background: center no-repeat url(../../assets/img/background.png);
   position: relative;
-  margin: 0 10px;
-  padding: 32px 10px;
-  margin: 10px 0 100px;
+  padding: 32px 10px 58px;
+  margin: 10px 0 24px;
 
   @include media-up($bp-ML) {
+    margin: 10px 0 80px;
     height: 496px;
     padding: 0;
   }
 
   @include media-up($bp-XL) {
-    margin: 28px 0 200px;
+    margin: 28px 0 80px;
 
     &:before {
       content: " ";
@@ -19,7 +19,7 @@
       position: absolute;
       bottom: 0;
       left: 0;
-      right: -200px;;
+      right: -230px;;
       height: 150%;
       background-position: center right;
       z-index: 9;
@@ -31,7 +31,7 @@
       position: absolute;
       bottom: 0;
       right: 0;
-      left: -200px;;
+      left: -240px;;
       height: 150%;
       background-position: center left;
       z-index: 9;
@@ -40,12 +40,11 @@
 
   .date {
     position: absolute;
-    bottom: 0;
+    bottom: 8px;
     z-index: 99;
     color: $color-2;
     left: 50%;
     transform: translate(-50%, 0);
-    font-size: 14px;
 
     @include media-up($bp-M) {
       bottom: 18px;
@@ -99,7 +98,7 @@
         font-weight: 800;
         color: $color-1;
         transform: rotate(4.649deg);
-        box-shadow: 0px 14px 50px 0px rgba(255, 103, 29, 0.10);
+        box-shadow: 0 14px 50px 0 rgba(255, 103, 29, 0.10);
         z-index: 9;
 
         @include media-up($bp-SM) {
@@ -118,7 +117,7 @@
         font-weight: 800;
         color: $color-2;
         transform: rotate(5.528deg);
-        box-shadow: 0px 14px 50px 0px rgba(255, 103, 29, 0.10);
+        box-shadow: 0 14px 50px 0 rgba(255, 103, 29, 0.10);
 
         @include media-up($bp-SM) {
           font-size: 48px;
@@ -131,16 +130,13 @@
       }
 
       h2 {
-        font-family: $font-base;
         display: inline-block;
         position: absolute;
         left: 0;
         bottom: 0;
         font-size: 12px;
-        font-weight: 800;
         color: $color-10;
-        text-transform: uppercase;
-        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+        box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
         padding: 6px;
         background-color: $color-2;
         border-radius: 18px;
@@ -149,7 +145,7 @@
           left: 36px;
           bottom: 50%;
           font-size: 14px;
-          padding: 12px;
+          padding: 10px 18px;
         }
       }
     }
@@ -176,12 +172,15 @@
       }
 
       h2 {
+        font-family: $font-bold;
+        text-transform: none;
         font-size: 14px;
-        font-weight: 600;
-        padding-top: 8px;
+        padding: 10px;
+        margin-bottom: 4px;
+        font-weight: 700;
 
         @include media-up($bp-M) {
-          font-size: 16px;
+          font-size: 18px;
         }
       }
 
