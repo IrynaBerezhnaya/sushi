@@ -29,13 +29,6 @@
 
 	<header id="masthead" class="site-header" role="banner" style="<?php storefront_header_styles(); ?>">
 
-		<?php $top_bar = get_field('top_bar', 'option');
-		if ( ! empty( $top_bar ) ) : ?>
-        <div class="top-bar">
-            <?php echo $top_bar; ?>
-        </div>
-		<?php endif; ?>
-
 	<?php
 		/**
 		 * Functions hooked into storefront_header action
