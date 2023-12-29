@@ -3,12 +3,14 @@
 body .navigation-branding {
   display: flex;
   align-items: center;
+  justify-content: center;
   max-width: 1528px;
   margin: 0 auto;
   padding: 10px;
 
   @include media-up($bp-L) {
     padding: 10px 20px;
+    justify-content: normal;
   }
 
   a {
@@ -25,7 +27,25 @@ body .navigation-branding {
   }
 
   .site-logo {
-    padding-right: 40px;
+    @include media-up($bp-ML) {
+      padding-right: 40px;
+    }
+  }
+
+  .header-schedule {
+    display: none;
+
+    @include media-up($bp-ML) {
+      display: flex;
+    }
+  }
+
+  .header-socials {
+    display: none;
+
+    @include media-up($bp-ML) {
+      display: flex;
+    }
   }
 }
 
@@ -157,14 +177,17 @@ body .navigation-branding {
 
 .top-bar {
   background-color: $color-1;
-  color: $color-2;
   text-align: center;
   padding: 4px;
 
   p {
+    font-family: $font-bold;
+    color: $color-2;
     font-size: 12px;
-    font-weight: 400;
-    letter-spacing: 0.3px;
+
+    @include media-up($bp-L) {
+      font-size: 13px;
+    }
 
     a {
       text-decoration: underline;

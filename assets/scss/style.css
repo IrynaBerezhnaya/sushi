@@ -442,6 +442,7 @@ ul.products li.product .price ins,
 body .navigation-branding {
   display: flex;
   align-items: center;
+  justify-content: center;
   max-width: 1528px;
   margin: 0 auto;
   padding: 10px;
@@ -449,6 +450,7 @@ body .navigation-branding {
 @media (min-width: 992px) {
   body .navigation-branding {
     padding: 10px 20px;
+    justify-content: normal;
   }
 }
 body .navigation-branding a {
@@ -461,8 +463,26 @@ body .navigation-branding img {
   display: block;
   transition: height 0.3s ease;
 }
-body .navigation-branding .site-logo {
-  padding-right: 40px;
+@media (min-width: 834px) {
+  body .navigation-branding .site-logo {
+    padding-right: 40px;
+  }
+}
+body .navigation-branding .header-schedule {
+  display: none;
+}
+@media (min-width: 834px) {
+  body .navigation-branding .header-schedule {
+    display: flex;
+  }
+}
+body .navigation-branding .header-socials {
+  display: none;
+}
+@media (min-width: 834px) {
+  body .navigation-branding .header-socials {
+    display: flex;
+  }
 }
 
 .categories-menu {
@@ -579,14 +599,18 @@ body .navigation-branding .site-logo {
 
 .top-bar {
   background-color: #2a1a5e;
-  color: #ffffff;
   text-align: center;
   padding: 4px;
 }
 .top-bar p {
+  font-family: "OpenSans-Bold", sans-serif;
+  color: #ffffff;
   font-size: 12px;
-  font-weight: 400;
-  letter-spacing: 0.3px;
+}
+@media (min-width: 992px) {
+  .top-bar p {
+    font-size: 13px;
+  }
 }
 .top-bar p a {
   text-decoration: underline;
