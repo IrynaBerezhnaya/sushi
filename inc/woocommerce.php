@@ -155,13 +155,15 @@ function ib_display_ingredients() {
 add_action( 'woocommerce_after_shop_loop_item_title', 'ib_display_ingredients', 9);
 
 /**
- * Add display grams for Products Loopprice
+ * Add display grams for Products Loop price
  */
 function ib_display_grams() {
     global $product;
-    $grams = $product->get_attribute('grams');
-    if ($grams) { ?>
-        <p class="grams"><?php echo $grams; ?></p>
+    $product = wc_get_product(get_the_ID());
+    $weight  = $product->get_weight();
+
+    if ($weight) { ?>
+        <p class="grams"><?php echo $weight; esc_html_e( ' г', 'woocommerce' );?></p>
     <?php }
 }
 add_action( 'woocommerce_after_shop_loop_item', 'ib_display_grams');
