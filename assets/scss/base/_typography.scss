@@ -126,17 +126,6 @@ ul.products li.product {
         padding-bottom: 22px;
     }
 
-    .price {
-        font-family: $font-bold;
-        color: $color-1;
-        font-size: 16px;
-        font-weight: 700;
-        margin-bottom: 0;
-
-        @include media-up($bp-L) {
-            font-size: 24px;
-        }
-    }
 }
 
 ul.products li.product .woocommerce-loop-product__title {
@@ -158,3 +147,77 @@ ul.products li.product .woocommerce-loop-product__title {
     }
 }
 
+.woocommerce-Price-amount,
+.xoo-wsc-body span.amount.woocommerce-Price-amount {
+	font-size: 16px;
+	font-family: $font-bold;
+	font-weight: 700;
+	color: $color-1;
+
+	@include media-up($bp-M) {
+		font-size: 24px;
+	}
+}
+
+.price del,
+del .woocommerce-Price-amount,
+.xoo-wsc-body del span.amount.woocommerce-Price-amount,
+.woocommerce-checkout del .woocommerce-Price-amount {
+	font-size: 12px;
+	font-family: $font-light;
+	font-weight: 300;
+	color: $color-18;
+
+	@include media-up($bp-M) {
+		font-size: 14px;
+	}
+}
+
+.price del .woocommerce-Price-currencySymbol,
+del .woocommerce-Price-amount .woocommerce-Price-currencySymbol {
+	display: none;
+}
+
+ins .woocommerce-Price-amount,
+.price ins .woocommerce-Price-amount,
+.xoo-wsc-body ins span.amount.woocommerce-Price-amount {
+	color: $color-10;
+}
+
+.wc-block-grid__products .wc-block-grid__product .price ins,
+.wc-block-grid__products li.product .price ins,
+ul.products .wc-block-grid__product .price ins,
+ul.products li.product .price ins,
+.price del + ins {
+	margin-left: 0;
+}
+
+.woocommerce-Price-currencySymbol {
+	margin-left: 5px;
+}
+
+.single-product .product .summary .woocommerce-Price-amount {
+	font-size: 20px;
+
+	@include media-up($bp-M) {
+		font-size: 26px;
+	}
+}
+
+.single-product .product .summary .price del,
+.single-product .product .summary del .woocommerce-Price-amount {
+	font-size: 14px;
+
+	@include media-up($bp-M) {
+		font-size: 16px;
+	}
+}
+
+.xoo-wsc-body span.amount.woocommerce-Price-amount,
+.woocommerce-checkout .woocommerce-Price-amount {
+	font-size: 16px;
+
+	@include media-up($bp-M) {
+		font-size: 20px;
+	}
+}
