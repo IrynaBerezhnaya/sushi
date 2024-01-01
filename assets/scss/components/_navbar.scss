@@ -13,6 +13,10 @@ body .navigation-branding {
     justify-content: normal;
   }
 
+  @include media-up($bp-XL) {
+    padding: 14px 20px;
+  }
+
   a {
     padding: 0;
   }
@@ -29,6 +33,14 @@ body .navigation-branding {
   .site-logo {
     @include media-up($bp-ML) {
       padding-right: 40px;
+    }
+
+    img {
+      height: 34px;
+
+      @include media-up($bp-L) {
+        height: 46px;
+      }
     }
   }
 
