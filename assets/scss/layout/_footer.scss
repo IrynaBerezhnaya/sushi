@@ -41,22 +41,6 @@
             @include media-up($bp-ML) {
                 height: 405px;
             }
-
-            h2 {
-                text-align: left;
-                padding: 18px;
-                font-size: 14px;
-
-                @include media-up($bp-M) {
-                    font-size: 18px;
-                }
-
-                @include media-up($bp-L) {
-                    font-size: 26px;
-                    text-align: center;
-                    padding: 38px 10px;
-                }
-            }
         }
     }
 
