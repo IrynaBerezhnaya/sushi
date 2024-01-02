@@ -20,13 +20,17 @@
 
 body {
 	font-size: var(--text-base-size);
-	font-family: var(--font-primary);
+}
+
+body, button, input, select, textarea {
+	font-family: $font-light;
 }
 
 h1, h2,
 .related > h2:first-child,
 .upsells > h2:first-child {
 	font-family: $font-dela-gothic;
+	font-weight: 400;
 	color: $color-1;
 	text-align: center;
 	font-size: 14px;
@@ -49,10 +53,55 @@ h1, h2,
 	}
 }
 
+h3 {
+	font-family: $font-dela-gothic;
+	font-weight: 400;
+	color: $color-1;
+	font-size: 14px;
+	text-transform: none;
+	margin-bottom: 15px;
+
+	@include media-up($bp-M) {
+		font-size: 16px;
+	}
+}
+
 p {
 	font-family: $font-light;
 	font-size: 14px;
 	color: $color-11;
+}
+
+.input-text,
+input[type=email],
+input[type=number],
+input[type=password],
+input[type=search],
+input[type=tel],
+input[type=text],
+input[type=url],
+textarea{
+	font-family: $font-light;
+	font-weight: 300;
+	color: $color-18;
+}
+
+input[type=number] {
+	font-family: $font-bold;
+	font-weight: 700;
+	color: $color-1;
+}
+
+label {
+	font-family: $font-base;
+	font-weight: 400;
+	color: $color-18;
+}
+
+.qty-button {
+	font-family: $font-bold;
+	font-weight: 700;
+	color: $color-1;
 }
 
 .entry-title,

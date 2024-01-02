@@ -1,0 +1,51 @@
+.woocommerce-checkout {
+	label .optional {
+		display: none;
+	}
+
+
+	#order_review,
+	#order_review_heading {
+		width: 100%;
+	}
+
+
+	table th {
+		font-size: 14px;
+		font-family: $font-base;
+		font-weight: 400;
+	}
+
+	.title-number {
+		display: inline-flex;
+		width: 35px;
+		height: 35px;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		gap: 10px;
+		flex-shrink: 0;
+		border-radius: 50%;
+		background: $color-9;
+		margin-right: 15px;
+
+		@include media-up($bp-M) {
+			margin-right: 30px;
+			width: 40px;
+			height: 40px;
+		}
+	}
+
+	.woocommerce-billing-fields__field-wrapper,
+	.woocommerce-checkout-review-order-table,
+	.woocommerce-checkout-payment {
+		display: block;
+		padding-left: 70px;
+	}
+
+	.woocommerce-billing-fields__field-wrapper {
+		display: flex;
+		justify-content: space-between;
+		flex-wrap: wrap;
+	}
+}

@@ -63,6 +63,11 @@ fieldset, fieldset legend .ib-background-custom-field {
 .col-full {
   max-width: 1528px;
   margin: 0 auto;
+  padding: 0 15px;
+
+  @include media-up($bp-M) {
+    padding: 0 50px;
+  }
 }
 
 header .col-full {
@@ -86,4 +91,90 @@ a, button, input {
   .add_to_cart_button  {
     display: none;
   }
+}
+
+//small 'margins' library:
+.m__0,
+.m__0 > p {
+  margin: 0 !important;
+}
+
+.mb__0 {
+  margin-bottom: 0;
+}
+
+.mb__1 {
+  margin-bottom: 20px;
+}
+
+.mb__2 {
+  margin-bottom: 30px;
+}
+
+.mb__3 {
+  margin-bottom: 50px;
+}
+
+.mb__4 {
+  margin-bottom: 10px;
+}
+
+.mb__5 {
+  margin-bottom: 15px;
+}
+
+.mb__6 {
+  margin-bottom: 5px;
+}
+
+.mt__1 {
+  margin-top: 20px;
+}
+
+.mt__2 {
+  margin-top: 30px;
+}
+
+.mt__3 {
+  margin-top: 50px;
+}
+
+.mt__4 {
+  margin-top: 10px;
+}
+
+.mt__5 {
+  margin-top: 15px;
+}
+
+.mt__6 {
+  margin-top: 5px;
+}
+
+.mr__1 {
+  margin-right: 10px;
+}
+
+.mr__2 {
+  margin-right: 5px;
+}
+
+.mr__3 {
+  margin-right: 20px;
+}
+
+.ml__1 {
+  margin-left: 5px;
+}
+
+.ml__2 {
+  margin-left: 10px;
+}
+
+.ml__3 {
+  margin-left: 20px;
+}
+
+.ml__4 {
+  margin-left: 10px;
 }

@@ -1,0 +1,82 @@
+.input-text,
+input[type=email],
+input[type=number],
+input[type=password],
+input[type=search],
+input[type=tel],
+input[type=text],
+input[type=url],
+textarea {
+	background: none;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+	box-shadow: none;
+	padding: 7px 3px;
+}
+
+.input-text:focus,
+input[type=email]:focus,
+input[type=number]:focus,
+input[type=password]:focus,
+input[type=search]:focus,
+input[type=tel]:focus,
+input[type=text]:focus,
+input[type=url]:focus,
+textarea:focus {
+	background: none;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.form-row {
+	width: 47%;
+	margin-bottom: 20px;
+
+	&.form-row-wide {
+		width: 100%;
+	}
+
+	&.form-row-number {
+		margin-bottom: 10px;
+		user-select: none;
+		display: flex;
+		justify-content: space-between;
+
+		label {
+			display: inline-block;
+		}
+
+		input {
+			width: auto;
+		}
+	}
+}
+
+input[type=number] {
+	border: none;
+	max-width: 34px;
+	text-align: center;
+	user-select: none;
+	pointer-events: none;
+	box-shadow: none !important;
+
+	&::-webkit-outer-spin-button,
+	&::-webkit-inner-spin-button {
+		-webkit-appearance: none;
+	}
+
+	&:focus {
+		border-bottom: none;
+	}
+}
+
+.qty-button {
+	width: 24px;
+	height: 24px;
+	display: inline-flex;
+	line-height: 24px;
+	align-items: center;
+	justify-content: center;
+	border: 1px solid #d9d9d9;
+	border-radius: 50%;
+	cursor: pointer;
+	user-select: none;
+}

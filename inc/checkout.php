@@ -1,8 +1,46 @@
 <?php
 
 add_action( 'woocommerce_review_order_before_payment', function () { ?>
-	<h3><?php esc_html_e( 'Оплата', 'woocommerce' ); ?></h3>
+	<h3><span class="title-number">3</span><?php esc_html_e( 'Оплата', 'woocommerce' ); ?></h3>
 <?php } );
+
+/**
+ * Display sale price in cart item
+ */
+function mb_display_sale_price_in_cart_item( $product_price_html, $product ) {
+	if ( $product ) {
+		$product_price_html = $product->is_on_sale() ? wc_format_sale_price( $product->get_regular_price(), $product->get_sale_price() ) : wc_price( $product->get_price() );
+	}
+
+	return $product_price_html;
+}
+
+add_filter( 'woocommerce_cart_product_price', 'mb_display_sale_price_in_cart_item', 10, 2 );
+
+/**
+ * Change Woo cart item name
+ */
+function mb_change_woocommerce_cart_item_name( $cart_item_name, $cart_item, $cart_item_key ) {
+
+	//add weight unit:
+	$weight_unit = get_option( 'woocommerce_weight_unit' );
+	if ( ! empty( $weight_unit ) ) {
+		if ( $cart_item ) {
+			$product = $cart_item['data'] ?? false;
+			if ( $product ) {
+				$weight = $product->get_weight();
+				if ( ! empty( $weight ) ) {
+					$cart_item_name .= '<div class="">' . $weight . ' ' . __( $weight_unit, 'woocommerce' ) . '</div>';
+				}
+			}
+		}
+	}
+
+	return $cart_item_name;
+
+}
+
+add_filter( 'woocommerce_cart_item_name', 'mb_change_woocommerce_cart_item_name', 10, 3 );
 
 /**
  * Change default Woo form input[type=number] HTML
