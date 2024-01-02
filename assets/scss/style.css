@@ -387,18 +387,6 @@ ul.products li.product .ingredients,
 ul.products li.product .grams {
   padding-bottom: 22px;
 }
-ul.products li.product .price {
-  font-family: "OpenSans-Bold", sans-serif;
-  color: #2a1a5e;
-  font-size: 16px;
-  font-weight: 700;
-  margin-bottom: 0;
-}
-@media (min-width: 992px) {
-  ul.products li.product .price {
-    font-size: 24px;
-  }
-}
 
 ul.products li.product .woocommerce-loop-product__title {
   font-family: "OpenSans-Bold", sans-serif;
@@ -418,6 +406,92 @@ ul.products li.product .woocommerce-loop-product__title {
 @media (min-width: 992px) {
   ul.products li.product .woocommerce-loop-product__title {
     font-size: 26px;
+  }
+}
+
+.woocommerce-Price-amount,
+.xoo-wsc-body span.amount.woocommerce-Price-amount {
+  font-size: 16px;
+  font-family: "OpenSans-Bold", sans-serif;
+  font-weight: 700;
+  color: #2a1a5e;
+}
+@media (min-width: 768px) {
+  .woocommerce-Price-amount,
+  .xoo-wsc-body span.amount.woocommerce-Price-amount {
+    font-size: 24px;
+  }
+}
+
+.price del,
+del .woocommerce-Price-amount,
+.xoo-wsc-body del span.amount.woocommerce-Price-amount,
+.woocommerce-checkout del .woocommerce-Price-amount {
+  font-size: 12px;
+  font-family: "OpenSans-Light", sans-serif;
+  font-weight: 300;
+  color: rgba(50, 53, 73, 0.7);
+}
+@media (min-width: 768px) {
+  .price del,
+  del .woocommerce-Price-amount,
+  .xoo-wsc-body del span.amount.woocommerce-Price-amount,
+  .woocommerce-checkout del .woocommerce-Price-amount {
+    font-size: 14px;
+  }
+}
+
+.price del .woocommerce-Price-currencySymbol,
+del .woocommerce-Price-amount .woocommerce-Price-currencySymbol {
+  display: none;
+}
+
+ins .woocommerce-Price-amount,
+.price ins .woocommerce-Price-amount,
+.xoo-wsc-body ins span.amount.woocommerce-Price-amount {
+  color: #ff671d;
+}
+
+.wc-block-grid__products .wc-block-grid__product .price ins,
+.wc-block-grid__products li.product .price ins,
+ul.products .wc-block-grid__product .price ins,
+ul.products li.product .price ins,
+.price del + ins {
+  margin-left: 0;
+}
+
+.woocommerce-Price-currencySymbol {
+  margin-left: 5px;
+}
+
+.single-product .product .summary .woocommerce-Price-amount {
+  font-size: 20px;
+}
+@media (min-width: 768px) {
+  .single-product .product .summary .woocommerce-Price-amount {
+    font-size: 26px;
+  }
+}
+
+.single-product .product .summary .price del,
+.single-product .product .summary del .woocommerce-Price-amount {
+  font-size: 14px;
+}
+@media (min-width: 768px) {
+  .single-product .product .summary .price del,
+  .single-product .product .summary del .woocommerce-Price-amount {
+    font-size: 16px;
+  }
+}
+
+.xoo-wsc-body span.amount.woocommerce-Price-amount,
+.woocommerce-checkout .woocommerce-Price-amount {
+  font-size: 16px;
+}
+@media (min-width: 768px) {
+  .xoo-wsc-body span.amount.woocommerce-Price-amount,
+  .woocommerce-checkout .woocommerce-Price-amount {
+    font-size: 20px;
   }
 }
 
@@ -713,11 +787,19 @@ input[type=number]:focus {
 }
 .site-footer h2 {
   color: #2a1a5e;
-  padding: 10px 10px 60px;
+  padding: 10px 10px 34px;
 }
 @media (min-width: 992px) {
   .site-footer h2 {
-    padding: 10px 10px 100px;
+    padding: 10px 10px 53px;
+  }
+}
+.site-footer h2.title {
+  font-size: 18px;
+}
+@media (min-width: 768px) {
+  .site-footer h2.title {
+    font-size: 26px;
   }
 }
 .site-footer .payment-method {
@@ -745,6 +827,23 @@ input[type=number]:focus {
 @media (min-width: 834px) {
   .site-footer .payment-method__item {
     height: 405px;
+  }
+}
+.site-footer .payment-method__item h2 {
+  text-align: left;
+  padding: 18px;
+  font-size: 14px;
+}
+@media (min-width: 768px) {
+  .site-footer .payment-method__item h2 {
+    font-size: 18px;
+  }
+}
+@media (min-width: 992px) {
+  .site-footer .payment-method__item h2 {
+    font-size: 26px;
+    text-align: center;
+    padding: 38px 10px;
   }
 }
 .site-footer .footer {

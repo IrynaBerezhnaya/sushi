@@ -3,10 +3,18 @@
 
     h2 {
         color: $color-1;
-        padding: 10px 10px 60px;
+        padding: 10px 10px 34px;
 
         @include media-up($bp-L) {
-            padding: 10px 10px 100px;
+            padding: 10px 10px 53px;
+        }
+
+        &.title {
+            font-size: 18px;
+
+            @include media-up($bp-M) {
+                font-size: 26px;
+            }
         }
     }
 
@@ -32,6 +40,22 @@
 
             @include media-up($bp-ML) {
                 height: 405px;
+            }
+
+            h2 {
+                text-align: left;
+                padding: 18px;
+                font-size: 14px;
+
+                @include media-up($bp-M) {
+                    font-size: 18px;
+                }
+
+                @include media-up($bp-L) {
+                    font-size: 26px;
+                    text-align: center;
+                    padding: 38px 10px;
+                }
             }
         }
     }
