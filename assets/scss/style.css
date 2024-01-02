@@ -644,15 +644,20 @@ body .navigation-branding .header-socials {
   height: auto;
 }
 @media (min-width: 1200px) {
-  .categories-menu__container li {
-    align-items: end;
-  }
   .categories-menu__container li:not(:first-child):hover {
     background: rgba(217, 217, 217, 0.19);
   }
 }
+.categories-menu__container li:first-child::before {
+  content: url(../../assets/img/fire.svg);
+  display: inline-block;
+  font-size: 0;
+}
 .categories-menu__container li:first-child:hover {
   opacity: 0.9;
+}
+.categories-menu__container li:first-child .categories-menu__link {
+  padding-left: 4px;
 }
 @media (min-width: 992px) {
   .categories-menu__container li:hover .categories-menu__category-name {
@@ -668,7 +673,7 @@ body .navigation-branding .header-socials {
 }
 @media (min-width: 1200px) {
   .categories-menu__link {
-    padding: 24px 36px;
+    padding: 14px 36px;
   }
 }
 .categories-menu__category-name {

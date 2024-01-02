@@ -72,23 +72,31 @@ function ib_display_categories_menu() {
     if ($product_categories) {
         echo '<div class="categories-menu categories-slide_js swiper">';
         echo '<ul class="categories-menu__container swiper-wrapper">';
+	    $is_first_item = true;
 
-        foreach ($product_categories as $category) {
-            $thumbnail_id = get_term_meta($category->term_id, 'thumbnail_id', true);
-            $image_active = get_field('thumbnail_hover', 'product_cat_' . $category->term_id);
-            $image = wp_get_attachment_url($thumbnail_id);
-            $is_current = is_product_category($category->slug);
+	    foreach ($product_categories as $category) {
+		    $thumbnail_id = get_term_meta($category->term_id, 'thumbnail_id', true);
+		    $image_active = get_field('thumbnail_hover', 'product_cat_' . $category->term_id);
+		    $image = wp_get_attachment_url($thumbnail_id);
+		    $is_current = is_product_category($category->slug);
 
-            echo '<li class="' . ($is_current ? 'active' : '') . ' swiper-slide">';
-            echo '<a href="' . get_term_link($category) . '" class="categories-menu__link">';
-            if ($is_current && $image_active) {
-                echo '<img src="' . $image_active['url'] . '" class="style-svg" alt="' . $category->name . '" />';
-            } elseif ($image) {
-                echo '<img src="' . $image . '" class="style-svg" alt="' . $category->name . '" />';
-            }
-            echo $category->slug === 'actions' ? $category->name . '</a>' : '<span class="categories-menu__category-name">' . $category->name . '</span></a>';
-            echo '</li>';
-        }
+		    echo '<li class="' . ($is_current ? 'active' : '') . ' swiper-slide">';
+		    echo '<a href="' . get_term_link($category) . '" class="categories-menu__link">';
+
+		    if ($is_first_item) {
+			    echo $category->slug === 'actions' ? $category->name . '</a>' : '<span class="categories-menu__category-name">' . $category->name . '</span></a>';
+		    } else {
+			    if ($is_current && $image_active) {
+				    echo '<img src="' . $image_active['url'] . '" class="style-svg" alt="' . $category->name . '" />';
+			    } elseif ($image) {
+				    echo '<img src="' . $image . '" class="style-svg" alt="' . $category->name . '" />';
+			    }
+			    echo $category->slug === 'actions' ? $category->name . '</a>' : '<span class="categories-menu__category-name">' . $category->name . '</span></a>';
+		    }
+
+		    echo '</li>';
+		    $is_first_item = false;
+	    }
         echo '</ul>';
         echo '</div>';
     }
