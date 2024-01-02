@@ -307,33 +307,6 @@ add_filter( 'woocommerce_terms_is_checked_default', '__return_true' );
 
 
 /**
- * Show custom badge: "Top Sale!"
- */
-function ib_show_custom_badge(  ) {
-	global $post;
-	
-	if ( get_field( 'ib_top_sale' ) ) {
-		echo '<span class="ib-badge promo-label">TOP SALE!</span>';
-	}
-	$product = wc_get_product( $post->ID );
-	$availability = $product->get_availability();  //Array ([availability] => [class] => in-stock
-	$stock_status = $availability['class'];        // string  in-stock
-
-	if ( $stock_status == 'out-of-stock' ) {
-		echo '<span class="ib-badge promo-label ib-bgr-gray">Sold Out!</span>';
-	}
-
-	if( $product->is_on_sale() && empty(get_field( 'ib_top_sale' ))) {
-		echo '<span class="ib-badge promo-label ib-bgr-green">Sale!</span>';
-	}
-
-}
-
-add_action( 'woocommerce_after_shop_loop_item_title', 'ib_show_custom_badge');
-add_action( 'woocommerce_single_product_summary', 'ib_show_custom_badge' );
-
-
-/**
  * Change btn "Add to cart" text on "Pre-Order" on single product page and on product archives(Collection) page
  *
  * @param string $text
