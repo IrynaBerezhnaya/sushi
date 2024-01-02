@@ -167,3 +167,32 @@ function ib_display_grams() {
     <?php }
 }
 add_action( 'woocommerce_after_shop_loop_item', 'ib_display_grams');
+
+/**
+ * Show custom badges for Products
+ */
+function ib_show_custom_badges(  ) {
+	global $product;
+
+	if (is_a($product, 'WC_Product')) {
+		$product_id = $product->get_id();
+		$product_categories = wc_get_product_term_ids($product_id, 'product_cat');
+
+        if ($product_categories) {
+	        echo '<div class="badges">';
+			foreach ($product_categories as $category_id) {
+				$show_badge = get_field('show_badge', 'product_cat_' . $category_id);
+				$thumbnail_id = get_term_meta($category_id, 'thumbnail_id', true);
+				$image = wp_get_attachment_url($thumbnail_id);
+
+				if ($show_badge == '1' && $image) {
+					echo '<img src="' . esc_url($image) . '" class="badge-item" alt="' . esc_attr(get_cat_name($category_id)) . ' badge" />';
+				}
+			}
+	        echo '</div>';
+		}
+	}
+}
+
+add_action( 'woocommerce_after_shop_loop_item_title', 'ib_show_custom_badges');
+add_action( 'woocommerce_product_thumbnails', 'ib_show_custom_badges');
