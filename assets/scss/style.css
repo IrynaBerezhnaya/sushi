@@ -829,6 +829,23 @@ input[type=number]:focus {
     height: 405px;
   }
 }
+.site-footer .payment-method__item h2 {
+  text-align: left;
+  padding: 18px;
+  font-size: 14px;
+}
+@media (min-width: 768px) {
+  .site-footer .payment-method__item h2 {
+    font-size: 18px;
+  }
+}
+@media (min-width: 992px) {
+  .site-footer .payment-method__item h2 {
+    font-size: 26px;
+    text-align: center;
+    padding: 38px 10px;
+  }
+}
 .site-footer .footer {
   background: #2a1a5e;
   padding: 10px;
