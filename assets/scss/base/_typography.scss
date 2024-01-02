@@ -151,22 +151,58 @@ ul.products {
 
 ul.products li.product {
 	border: 1px solid $color-2;
-	border-radius: 50px;
 	transition: 200ms ease-in-out;
+	box-shadow: 0 4px 15px 0 $color-17;
+	border-radius: 25px;
+	margin: 10px auto 10px;
+	max-width: 400px;
 
-	@include media-up($bp-XL) {
-		&:hover {
-			border-radius: 50px;
-			border: 1px solid $color-16;
-			background: $color-2;
-			box-shadow: 0 4px 15px 0 $color-17;
+    @include media-up($bp-XL) {
+		border-radius: 50px;
+		box-shadow: none;
+		margin-bottom: 60px;
+		margin-right: 4.347826087%;
+		max-width: 100%;
+
+        &:hover {
+            border-radius: 50px;
+            border: 1px solid $color-16;
+            background: $color-2;
+            box-shadow: 0 4px 15px 0 $color-17;
+        }
+    }
+
+	.attachment-woocommerce_thumbnail {
+		max-width: 200px;
+        margin-top: 28px;
+
+		@include media-up($bp-XL) {
+			max-width: 100%;
+			width: 215px;
+			height: 215px;
+			object-fit: contain;
 		}
-	}
+    }
 
-	img {
-		width: auto;
-		margin-top: 28px;
-		height: 216px;
+	.woocommerce-loop-product__link {
+		.badges {
+			position: absolute;
+			top: 4%;
+			right: 6%;
+
+			@include media-up($bp-L) {
+				right: 5%;
+			}
+
+			img {
+				width: 37px;
+				margin: 0 auto 13px;
+
+				@include media-up($bp-XL) {
+					width: 49px;
+				}
+			}
+		}
 	}
 
 	.ingredients,
@@ -267,5 +303,19 @@ ul.products li.product .price ins,
 
 	@include media-up($bp-M) {
 		font-size: 20px;
+	}
+}
+
+.single-product div.product .woocommerce-product-gallery {
+	position: relative;
+
+	.badges {
+		position: absolute;
+		top: 2%;
+		right: 12%;
+
+		img {
+			margin-bottom: 6px;
+		}
 	}
 }
