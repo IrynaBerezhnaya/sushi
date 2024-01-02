@@ -85,7 +85,7 @@ body .navigation-branding {
       height: auto;
 
       @include media-up($bp-XL) {
-        align-items: end;
+        //align-items: end;
 
         &:not(:first-child):hover {
           background: $color-12;
@@ -93,8 +93,18 @@ body .navigation-branding {
       }
 
       &:first-child {
+        &::before {
+          content: url(../../assets/img/fire.svg);
+          display: inline-block;
+          font-size: 0;
+        }
+
         &:hover {
           opacity: 0.9;
+        }
+
+        .categories-menu__link {
+          padding-left: 4px;
         }
       }
 
@@ -114,7 +124,7 @@ body .navigation-branding {
     padding: 12px 0;
 
     @include media-up($bp-XL) {
-      padding: 24px 36px;
+      padding: 14px 36px;
     }
   }
 
