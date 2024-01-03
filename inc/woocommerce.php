@@ -204,3 +204,12 @@ function ib_show_custom_badges(  ) {
 
 add_action( 'woocommerce_after_shop_loop_item_title', 'ib_show_custom_badges');
 add_action( 'woocommerce_product_thumbnails', 'ib_show_custom_badges');
+
+/**
+ * Change buy button text for Products
+ */
+function ib_change_buy_button_text( $button_text ) {
+	$button_text = 'БЕРУ';
+	return $button_text;
+}
+add_filter( 'woocommerce_product_add_to_cart_text', 'ib_change_buy_button_text' );
