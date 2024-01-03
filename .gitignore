@@ -3,4 +3,4 @@
 *.log
 /.idea
 *.map
-/assets/scss/style.scss/style.css
+/assets/scss/*.css
