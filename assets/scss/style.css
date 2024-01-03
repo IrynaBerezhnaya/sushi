@@ -387,6 +387,9 @@ ul.products li.product {
     background: #ffffff;
     box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.05);
   }
+  ul.products li.product:hover .add_to_cart_button {
+    display: flex;
+  }
 }
 ul.products li.product .attachment-woocommerce_thumbnail {
   max-width: 200px;
@@ -418,6 +421,32 @@ ul.products li.product .woocommerce-loop-product__link .badges img {
   ul.products li.product .woocommerce-loop-product__link .badges img {
     width: 49px;
   }
+}
+ul.products li.product .add_to_cart_button {
+  font-family: "OpenSans-Bold", sans-serif;
+  color: #ffffff;
+  font-size: 12px;
+  background-color: #ff671d;
+  padding: 15px 25px;
+  border-radius: 24px;
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  position: absolute;
+  right: 4%;
+  bottom: 8%;
+  transition: 200ms ease-in-out;
+}
+@media (min-width: 1200px) {
+  ul.products li.product .add_to_cart_button {
+    display: none;
+  }
+}
+ul.products li.product .add_to_cart_button::after {
+  content: url(../../assets/img/add.svg);
+  display: inline-block;
+  font-size: 0;
+  margin-left: 10px;
 }
 ul.products li.product .ingredients,
 ul.products li.product .grams {
@@ -1244,10 +1273,6 @@ a, button, input {
 }
 a:focus, a:focus-visible, button:focus, button:focus-visible, input:focus, input:focus-visible {
   outline: none;
-}
-
-.woocommerce .product .add_to_cart_button {
-  display: none;
 }
 
 .m__0,
