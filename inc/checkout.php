@@ -30,7 +30,7 @@ function mb_change_woocommerce_cart_item_name( $cart_item_name, $cart_item, $car
 			if ( $product ) {
 				$weight = $product->get_weight();
 				if ( ! empty( $weight ) ) {
-					$cart_item_name .= '<div class="">' . $weight . ' ' . __( $weight_unit, 'woocommerce' ) . '</div>';
+					$cart_item_name .= '<p class="weight">' . $weight . ' ' . __( $weight_unit, 'woocommerce' ) . '</p>';
 				}
 			}
 		}
@@ -108,3 +108,109 @@ function mb_display_plus_quantity_input_button( $return = false ) {
 }
 
 add_action( 'woocommerce_after_quantity_input_field', 'mb_display_plus_quantity_input_button' );
+
+/**
+ * Display Checkout Total section
+ */
+function mb_display_checkout_total_section() { ?>
+
+	<div class="checkout-total">
+
+		<h3 class="">Разом</h3>
+
+		<?php $cart_items_qty = WC()->cart->get_cart_contents_count(); ?>
+		<?php $s = $cart_items_qty > 1 ? 'и' : ''; ?>
+
+		<div class="row">
+			<p class="col col-1"><?php echo $cart_items_qty; ?> товар<?php echo $s; ?> на суму </p>
+			<p class="col col-2"><?php wc_cart_totals_subtotal_html(); ?> </p>
+
+		</div>
+
+		<?php foreach ( WC()->cart->get_coupons() as $code => $coupon ) : ?>
+			<div class="row cart-discount coupon-<?php echo esc_attr( sanitize_title( $code ) ); ?>">
+				<p class="col col-1"><?php wc_cart_totals_coupon_label( $coupon ); ?></p>
+				<p class="col col-2"><?php wc_cart_totals_coupon_html( $coupon ); ?></p>
+			</div>
+		<?php endforeach; ?>
+
+		<?php if ( WC()->cart->needs_shipping() && WC()->cart->show_shipping() ) : ?>
+			<div class="row shipping">
+				<?php do_action( 'woocommerce_review_order_before_shipping' ); ?>
+
+				<?php wc_cart_totals_shipping_html(); ?>
+
+				<?php do_action( 'woocommerce_review_order_after_shipping' ); ?>
+			</div>
+		<?php endif; ?>
+
+
+		<?php foreach ( WC()->cart->get_fees() as $fee ) : ?>
+			<div class="row fee">
+				<p class="col col-1"><?php echo esc_html( $fee->name ); ?></p>
+				<p class="col col-2"><?php wc_cart_totals_fee_html( $fee ); ?></p>
+			</div>
+		<?php endforeach; ?>
+
+
+		<?php if ( wc_tax_enabled() && ! WC()->cart->display_prices_including_tax() ) : ?>
+			<?php if ( 'itemized' === get_option( 'woocommerce_tax_total_display' ) ) : ?>
+				<?php foreach ( WC()->cart->get_tax_totals() as $code => $tax ) : // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited ?>
+					<div class="row tax-rate tax-rate-<?php echo esc_attr( sanitize_title( $code ) ); ?>">
+						<p class="col col-1"><?php echo esc_html( $tax->label ); ?></p>
+						<p class="col col-2"><?php echo wp_kses_post( $tax->formatted_amount ); ?></p>
+					</div>
+				<?php endforeach; ?>
+			<?php else : ?>
+				<div class="row tax-total">
+					<p class="col col-1"><?php echo esc_html( WC()->countries->tax_or_vat() ); ?></p>
+					<p class="col col-2"><?php wc_cart_totals_taxes_total_html(); ?></p>
+				</div>
+			<?php endif; ?>
+		<?php endif; ?>
+
+
+		<?php do_action( 'woocommerce_review_order_before_order_total' ); ?>
+
+		<div class="row order-total">
+			<p class="col col-1"><?php esc_html_e( 'До сплати', 'woocommerce' ); ?></p>
+			<p class="col col-2"><?php wc_cart_totals_order_total_html(); ?></p>
+		</div>
+
+		<?php do_action( 'woocommerce_review_order_after_order_total' ); ?>
+
+
+		<button class="button btn-primary"><?php _e( 'Place order', 'woocommerce' ); ?></button>
+
+	</div>
+
+<?php }
+
+add_action( 'woocommerce_checkout_after_order_review', 'mb_display_checkout_total_section' );
+
+/**
+ * Change woocommerce shipping package name
+ */
+function mb_change_woocommerce_shipping_package_name( $shipping_package_name, $i, $package ) {
+
+	return 'Вартість доставки';
+}
+
+add_filter( 'woocommerce_shipping_package_name', 'mb_change_woocommerce_shipping_package_name', 10, 3 );
+
+/**
+ * Change Free Shipping label
+ */
+function mb_change_free_shipping_label( $label, $method ) {
+
+	if ( $method ) {
+		$method_id = $method->method_id ?? '';
+		if ( $method_id === 'free_shipping' ) {
+			$label = '<span class="col-2">Безкоштовно</span>';
+		}
+	}
+
+	return $label;
+}
+
+add_filter( 'woocommerce_cart_shipping_method_full_label', 'mb_change_free_shipping_label', 10, 2 );
