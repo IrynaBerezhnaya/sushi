@@ -58,7 +58,7 @@
     align-items: center;
     height: 100%;
 
-    @include media-up($bp-ML) {
+    @include media-up($bp-XL) {
       &:before {
         content: " ";
         background: bottom no-repeat url(../../assets/img/overlay.png);
@@ -73,13 +73,12 @@
     }
 
     .plus {
-      background: center no-repeat url(../../assets/img/+.svg);
-      background-color: $color-2;
-      padding: 22px;
-      border-radius: 50%;
-      margin-left: 10px;
+      display: none;
 
       @include media-up($bp-M) {
+        display: inline-block;
+        background: center no-repeat url(../../assets/img/+.svg) $color-2;
+        border-radius: 50%;
         padding: 36px;
         margin: 110px 0 0 12px;
       }
@@ -87,23 +86,27 @@
 
     &-right {
       position: relative;
+      font-family: $font-bold;
 
       .total {
-        position: absolute;
-        top: -20px;
-        padding: 4px;
-        background-color: $color-2;
-        border-radius: 20px;
-        font-size: 12px;
-        font-weight: 800;
-        color: $color-1;
-        transform: rotate(4.649deg);
-        box-shadow: 0 14px 50px 0 rgba(255, 103, 29, 0.10);
-        z-index: 9;
+        display: none;
 
-        @include media-up($bp-SM) {
-          font-size: 14px;
-          padding: 6px 16px;
+        @include media-up($bp-M) {
+          display: inline-block;
+          position: absolute;
+          top: -20px;
+          background-color: $color-2;
+          border-radius: 20px;
+          color: $color-1;
+          transform: rotate(4.649deg);
+          box-shadow: 0 14px 50px 0 rgba(255, 103, 29, 0.10);
+          z-index: 9;
+          font-size: 18px;
+          padding: 2px 12px;
+        }
+
+        @include media-up($bp-XL) {
+          top: 8%;
         }
       }
 
@@ -113,24 +116,28 @@
         padding: 0 14px;
         background-color: $color-10;
         border-radius: 50px;
-        font-size: 20px;
-        font-weight: 800;
+        font-size: 30px;
+        line-height: 1.3;
         color: $color-2;
         transform: rotate(5.528deg);
         box-shadow: 0 14px 50px 0 rgba(255, 103, 29, 0.10);
 
         @include media-up($bp-SM) {
-          font-size: 48px;
+          font-size: 50px;
+          padding: 0 30px;
         }
 
-        @include media-up($bp-ML) {
-          font-size: 54px;
-          padding: 4px 20px;
+        @include media-up($bp-L) {
+          font-size: 75px;
+        }
+
+        @include media-up($bp-XL) {
+          top: 12%;
         }
       }
 
       h2 {
-        display: inline-block;
+        display: inline-flex;
         position: absolute;
         left: 0;
         bottom: 0;
@@ -145,7 +152,25 @@
           left: 36px;
           bottom: 50%;
           font-size: 14px;
-          padding: 10px 18px;
+          padding: 7px 18px;
+        }
+
+        &::after {
+          content: url(../../assets/img/fire.svg);
+          display: inline-block;
+          font-size: 0;
+        }
+      }
+
+      .attachment-woocommerce_thumbnail {
+        margin-top: 10%;
+
+        @include media-up($bp-SM) {
+          margin-top: 20%;
+        }
+
+        @include media-up($bp-XL) {
+          margin-top: 40%;
         }
       }
     }
@@ -175,8 +200,7 @@
         font-family: $font-bold;
         text-transform: none;
         font-size: 14px;
-        padding: 10px;
-        margin-bottom: 4px;
+        padding: 10px 10px 0;
         font-weight: 700;
 
         @include media-up($bp-M) {
@@ -199,9 +223,10 @@
 
       .price {
         .new-price {
-          font-size: 16px;
-          font-weight: 600;
-          color: $color-10;
+          .woocommerce-Price-amount {
+            font-size: 20px;
+            color: $color-10;
+          }
         }
       }
     }
