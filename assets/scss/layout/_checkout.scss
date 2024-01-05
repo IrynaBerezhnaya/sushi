@@ -192,6 +192,18 @@
 		border-color: $color-7;
 	}
 
+	.store-location {
+		color: $color-18;
+		margin-top: 15px;
+		text-align: center;
+		vertical-align: middle;
+
+		&::before {
+			content: url(../../assets/img/location.svg);
+			margin-right: 5px;
+		}
+	}
+
 }
 
 .woocommerce-message,

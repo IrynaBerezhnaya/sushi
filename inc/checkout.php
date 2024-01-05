@@ -182,6 +182,21 @@ function mb_display_checkout_total_section() { ?>
 
 		<button class="button btn-primary"><?php _e( 'Place order', 'woocommerce' ); ?></button>
 
+		<?php
+		//store location:
+		$store_city         = get_option( 'woocommerce_store_city' );
+		$store_street       = get_option( 'woocommerce_store_address' );
+		$store_house_number = get_option( 'woocommerce_store_address_2' );
+
+		if ( ! empty( $store_city ) && ! empty( $store_street ) ) { ?>
+			<p class="store-location">
+				<strong><?php echo $store_city; ?>,</strong>
+				<?php esc_html_e( 'вул.', 'woocommerce' ); ?>
+				<?php echo $store_street; ?>
+				<?php echo ! empty( $store_house_number ) ? ' ' . $store_house_number : ''; ?>
+			</p>
+		<?php } ?>
+
 	</div>
 
 <?php }
