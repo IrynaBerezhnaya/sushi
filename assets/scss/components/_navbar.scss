@@ -85,14 +85,16 @@ body .navigation-branding {
       height: auto;
 
       @include media-up($bp-XL) {
-        //align-items: end;
-
         &:not(:first-child):hover {
           background: $color-12;
         }
       }
 
       &:first-child {
+        font-family: $font-dela-gothic;
+        font-size: 16px;
+        line-height: 110%;
+
         &::before {
           content: url(../../assets/img/fire.svg);
           display: inline-block;
