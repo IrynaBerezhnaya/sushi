@@ -8,7 +8,7 @@ input[type=text],
 input[type=url],
 textarea {
 	background: none;
-	border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+	border-bottom: 1px solid $color-21;
 	box-shadow: none;
 	padding: 7px 3px;
 }
@@ -66,17 +66,4 @@ input[type=number] {
 	&:focus {
 		border-bottom: none;
 	}
-}
-
-.qty-button {
-	width: 24px;
-	height: 24px;
-	display: inline-flex;
-	line-height: 24px;
-	align-items: center;
-	justify-content: center;
-	border: 1px solid #d9d9d9;
-	border-radius: 50%;
-	cursor: pointer;
-	user-select: none;
 }

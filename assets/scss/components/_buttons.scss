@@ -1,78 +1,95 @@
 @mixin button-primary($fs) {
-  padding: 20px 0 19px;
-  text-align: center;
-  display: block;
-  color: $color-8;
-  background-color: transparent;
-  width: 100%;
-  max-width: 260px;
-  font-family: $font-base;
-  font-weight: 400;
-  cursor: pointer;
-  font-size: $fs;
-  line-height: 1;
-  border: 1px solid $color-8;
-  transition: $transition-ease;
-  text-decoration: none;
-  appearance: none;
+	padding: 15px 20px;
+	text-align: center;
+	display: block;
+	color: $color-2;
+	background-color: $color-10;
+	width: 100%;
+	max-width: 280px;
+	height: 62px;
+	font-family: $font-bold;
+	font-weight: 700;
+	cursor: pointer;
+	font-size: $fs;
+	line-height: 1;
+	border: none;
+	border-radius: 24px;
+	transition: $transition-ease;
+	text-decoration: none;
+	appearance: none;
+	text-transform: uppercase;
 
-  &:hover,
-  &:active,
-  &:focus {
-    background-color: $color-8;
-    border: 2px solid $color-8;
-    color: $color-2;
-    outline: none;
-  }
+	&:hover,
+	&:active,
+	&:focus {
+		background-color: $color-10-1;
+		outline: none;
+	}
 }
 
 @mixin button-secondary($fs) {
-  padding: 17px 0;
-  text-transform: uppercase;
-  text-align: center;
-  display: block;
-  color: $color-2;
-  background-color: $color-6;
-  width: 100%;
-  max-width: 570px;
-  font-family: $font-light;
-  font-weight: 300;
-  cursor: pointer;
-  font-size: $fs;
-  line-height: 1;
-  border: none;
-  transition: $transition-ease;
-  appearance: none;
+	padding: 17px 0;
+	text-transform: uppercase;
+	text-align: center;
+	display: block;
+	color: $color-2;
+	background-color: $color-6;
+	width: 100%;
+	max-width: 570px;
+	font-family: $font-light;
+	font-weight: 300;
+	cursor: pointer;
+	font-size: $fs;
+	line-height: 1;
+	border: none;
+	transition: $transition-ease;
+	appearance: none;
 
-  @include media-up($bp-L) {
-    line-height: 34rem;
-  }
+	@include media-up($bp-L) {
+		line-height: 34rem;
+	}
 
-  &:hover,
-  &:active,
-  &:focus {
-    filter: brightness(120%) saturate(120%);
-    color: $color-2;
-    outline: none;
-  }
+	&:hover,
+	&:active,
+	&:focus {
+		filter: brightness(120%) saturate(120%);
+		color: $color-2;
+		outline: none;
+	}
 }
 
+.button,
+.button.alt,
+.btn,
 .btn-primary {
-  @include button-primary(16px);
+	@include button-primary(16px);
 }
 
 .btn-secondary {
-  @include button-secondary(16px);
+	@include button-secondary(16px);
 }
 
 .wp-block-button {
-  a.wp-block-button__link {
-    transition: opacity 0.3s ease-in-out;
+	a.wp-block-button__link {
+		transition: opacity 0.3s ease-in-out;
 
-    &:hover,
-    &:focus {
-      text-decoration: none;
-      opacity: 0.8;
-    }
-  }
+		&:hover,
+		&:focus {
+			text-decoration: none;
+			opacity: 0.8;
+		}
+	}
+}
+
+.qty-button {
+	width: 24px;
+	height: 24px;
+	display: inline-flex;
+	line-height: 24px;
+	align-items: center;
+	justify-content: center;
+	border: 1px solid #d9d9d9;
+	border-radius: 50%;
+	cursor: pointer;
+	user-select: none;
 }
