@@ -210,19 +210,14 @@ ul.products li.product {
 	}
 
 	.add_to_cart_button {
-		font-family: $font-bold;
-		color: $color-2;
 		font-size: 12px;
-		background-color: $color-10;
 		padding: 15px 25px;
-		border-radius: 24px;
 		display: flex;
 		align-items: center;
 		width: fit-content;
 		position: absolute;
 		right: 4%;
 		bottom: 8%;
-		transition: 200ms ease-in-out;
 
 		@include media-up($bp-XL) {
 			display: none;
