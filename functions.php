@@ -360,10 +360,10 @@ function ib_change_add_to_cart_text( $text, $product ) {
 		}
 	}
 
-	$sold_out = __( "Sold Out", "woocommerce" );
+	$sold_out = __( "На жаль, товар зараз недоступний", "woocommerce" );
 
-	$availability = $product->get_availability();  //Array ([availability] => [class] => in-stock
-	$stock_status = $availability['class'];        // string  in-stock
+	$availability = $product->get_availability();
+	$stock_status = $availability['class'];
 
 	if ( $stock_status == 'out-of-stock' ) {
 		$text = $sold_out;
