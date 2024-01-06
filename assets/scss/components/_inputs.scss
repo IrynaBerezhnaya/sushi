@@ -27,8 +27,12 @@ textarea:focus {
 }
 
 .form-row {
-	width: 47%;
+	width: 100%;
 	margin-bottom: 20px;
+
+	@include media-up($bp-XL) {
+		width: 47%;
+	}
 
 	&.form-row-wide {
 		width: 100%;
@@ -66,4 +70,17 @@ input[type=number] {
 	&:focus {
 		border-bottom: none;
 	}
+}
+
+input[type=radio] + label:before,
+#payment .payment_methods li input[type=radio] + label:before,
+#payment .payment_methods li input[type=radio]:first-child + label:before {
+	content: "\f192";
+	color: $color-9;
+}
+
+input[type=radio]:checked + label:before,
+#payment .payment_methods li input[type=radio]:checked + label:before,
+#payment .payment_methods li input[type=radio]:first-child:checked + label:before {
+	color: $color-1;
 }
