@@ -29,16 +29,7 @@ add_action( 'admin_enqueue_scripts', 'mb_admin_enqueue_scripts' );
 require 'inc/checkout.php';
 require 'inc/home-page.php';
 require 'inc/woocommerce.php';
-
-//master test
-
-
-/**
- * Load WooCommerce compatibility file.
- */
-if ( class_exists( 'WooCommerce' ) ) {
-//	require_once get_stylesheet_directory() . '/woocommerce/templates/cart/mini-cart.php';
-}
+require 'inc/ajax_handlers.php';
 
 /**
  * Add acf options page
