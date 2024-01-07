@@ -10,12 +10,18 @@
 	}
 
 	table.woocommerce-checkout-review-order-table {
-		margin-left: 70px;
 		overflow: hidden;
+		max-width: 100%;
+
+		@include media-up($bp-M) {
+			margin-left: 70px;
+			max-width: calc(100% - 70px);
+		}
 
 		td, th {
 			vertical-align: middle;
-			padding: 30px 30px;
+			padding: min(2%, 30px);
+			overflow-wrap: normal;
 		}
 
 		th {
@@ -56,8 +62,13 @@
 		}
 
 		.product-image {
+			display: none;
 			width: 140px;
 			position: relative;
+
+			@include media-up($bp-M) {
+				display: table-cell;
+			}
 
 			img.badge-item {
 				max-width: 25px;
@@ -65,10 +76,10 @@
 
 			.badges {
 				position: absolute;
-				top: 20px;
+				bottom: 20px;
 				display: flex;
 				flex-direction: column;
-				gap: 8px;
+				gap: 5px;
 				left: 0;
 			}
 		}
@@ -78,6 +89,14 @@
 			color: $color-1;
 			font-weight: 700;
 			font-size: 14px;
+			min-width: 40px;
+		}
+
+		.product-price {
+			display: none;
+			@include media-up($bp-M) {
+				display: table-cell;
+			}
 		}
 
 	}
@@ -104,7 +123,9 @@
 
 	.woocommerce-billing-fields__field-wrapper,
 	.woocommerce-checkout-payment {
-		padding-left: 70px;
+		@include media-up($bp-M) {
+			padding-left: 70px;
+		}
 	}
 
 	.woocommerce-billing-fields__field-wrapper {
@@ -119,27 +140,37 @@
 
 	form.checkout {
 		display: flex;
+		flex-wrap: wrap;
 
-		& > .col-1 {
-			width: 80%;
-			max-width: 1020px;
-			margin-right: 30px;
+		& > .col-1,
+		& > .col-2 {
+			width: 100%;
+			max-width: none;
 		}
 
-		& > .col-2 {
-			width: 20%;
-			min-width: 420px;
+		@include media-up($bp-XL) {
+			& > .col-1 {
+				width: calc(70% - 30px);
+				margin-right: 30px;
+			}
+
+			& > .col-2 {
+				width: 30%;
+			}
 		}
 	}
 
 	.checkout-total {
 		background-color: $color-19;
-		max-width: 420px;
 		width: 100%;
 		border-radius: 24px;
-		margin-top: 20px;
-		padding: 30px;
+		margin-top: 50px;
+		padding: min(8%, 30px);
 		clear: both;
+
+		@include media-up($bp-XL) {
+			margin-top: 20px;
+		}
 
 		.row {
 			display: flex;
@@ -158,9 +189,13 @@
 		.col-2,
 		.col-2 .woocommerce-Price-amount {
 			font-family: $font-base;
-			font-size: 20px;
+			font-size: 16px;
 			font-weight: 400;
 			color: $color-1;
+
+			@include media-up($bp-M) {
+				font-size: 20px;
+			}
 		}
 
 		.order-total {
@@ -171,9 +206,13 @@
 
 			.woocommerce-Price-amount {
 				font-family: $font-bold;
-				font-size: 24px;
+				font-size: 20px;
 				font-weight: 700;
 				color: $color-1;
+
+				@include media-up($bp-M) {
+					font-size: 24px;
+				}
 			}
 		}
 
@@ -218,6 +257,7 @@
 	right: 0;
 	min-height: 70px;
 	display: flex;
+	flex-wrap: wrap;
 	gap: 10px;
 	overflow: hidden;
 	transform: translateY(300%);
@@ -258,4 +298,9 @@
 	100% {
 		transform: translateY(300%)
 	}
+}
+
+#payment .payment_methods > li:not(.woocommerce-notice),
+#payment .payment_methods > li:not(.woocommerce-notice):hover {
+	background-color: transparent;
 }
