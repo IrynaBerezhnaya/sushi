@@ -147,6 +147,7 @@
         padding: 6px;
         background-color: $color-2;
         border-radius: 18px;
+        max-width: 100%;
 
         @include media-up($bp-M) {
           left: 36px;
