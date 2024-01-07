@@ -164,10 +164,10 @@ ul.products li.product {
 
     @include media-up($bp-XL) {
 		border-radius: 50px;
-		box-shadow: none;
 		margin-bottom: 60px;
 		margin-right: 4.347826087%;
 		max-width: 100%;
+		box-shadow: 0 4px 15px 0 $color-17;
 
         &:hover {
             border-radius: 50px;
@@ -182,7 +182,6 @@ ul.products li.product {
     }
 
 	&.outofstock {
-		border-radius: 50px;
 		box-shadow: 0 4px 15px 0 $color-17;
 
 		&::before {
@@ -239,23 +238,71 @@ ul.products li.product {
 		}
     }
 
-	.woocommerce-loop-product__link {
-		.badges {
-			position: absolute;
-			top: 4%;
-			right: 6%;
+	.badges {
+		position: absolute;
+		top: 4%;
+		right: 6%;
+
+		@include media-up($bp-L) {
+			right: 5%;
+		}
+
+		.item-link {
+			position: relative;
+			transition: 200ms ease-in-out;
 
 			@include media-up($bp-L) {
-				right: 5%;
-			}
-
-			img {
-				width: 37px;
-				margin: 0 auto 13px;
-
-				@include media-up($bp-XL) {
-					width: 49px;
+				&:hover {
+					.item-name {
+						display: block;
+					}
 				}
+			}
+		}
+
+		.item-name {
+			display: none;
+			position: absolute;
+			top: 90%;
+			left: 60%;
+			transform: translateX(-50%);
+			background-color: $color-2;
+			padding: 10px 12px;
+			border-radius: 8px;
+			box-shadow: 0 2px 4px $color-14;
+			font-size: 12px;
+			font-style: normal;
+			line-height: 110%;
+			text-transform: uppercase;
+			z-index: 10;
+
+			&:before {
+				content: "";
+				position: absolute;
+				//bottom: 100%;
+				//left: 50%;
+				//margin-left: -5px;
+				//border-width: 5px;
+				//border-style: solid;
+				//border-color: transparent transparent $color-2 transparent;
+				bottom: 83%;
+				left: 30%;
+				width: 0;
+				height: 0;
+				border-style: solid;
+				border-color: transparent transparent $color-2 transparent;
+				transform: rotate(90deg);
+				z-index: 9;
+				border-width: 0 5px 10px 5px;
+			}
+		}
+
+		img {
+			width: 37px;
+			margin: 0 auto 13px;
+
+			@include media-up($bp-XL) {
+				width: 49px;
 			}
 		}
 	}
@@ -294,7 +341,6 @@ ul.products li.product {
 	.grams {
 		padding-bottom: 22px;
 	}
-
 }
 
 ul.products li.product .woocommerce-loop-product__title {
@@ -313,6 +359,69 @@ ul.products li.product .woocommerce-loop-product__title {
 
 	@include media-up($bp-L) {
 		font-size: 26px;
+	}
+}
+
+.badges {
+	position: absolute;
+	top: 4%;
+	right: 6%;
+
+	@include media-up($bp-L) {
+		right: 5%;
+	}
+
+	.item-link {
+		position: relative;
+		transition: 200ms ease-in-out;
+
+		@include media-up($bp-L) {
+			&:hover {
+				.item-name {
+					display: block;
+				}
+			}
+		}
+	}
+
+	.item-name {
+		display: none;
+		position: absolute;
+		top: 90%;
+		left: 80%;
+		transform: translateX(-50%);
+		background-color: $color-2;
+		padding: 10px 12px;
+		border-radius: 8px;
+		box-shadow: 0 2px 4px $color-14;
+		font-size: 12px;
+		font-style: normal;
+		line-height: 110%;
+		text-transform: uppercase;
+		z-index: 10;
+
+		&:before {
+			content: "";
+			position: absolute;
+			bottom: 83%;
+			left: 30%;
+			width: 0;
+			height: 0;
+			border-style: solid;
+			border-color: transparent transparent $color-2 transparent;
+			transform: rotate(90deg);
+			z-index: 9;
+			border-width: 0 5px 10px 5px;
+		}
+	}
+
+	img {
+		width: 37px;
+		margin: 0 auto 13px;
+
+		@include media-up($bp-XL) {
+			width: 49px;
+		}
 	}
 }
 

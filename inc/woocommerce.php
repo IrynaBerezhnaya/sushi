@@ -222,9 +222,13 @@ function ib_show_custom_badges( $product = false ) {
 				$show_badge   = get_field( 'show_badge', 'product_cat_' . $category_id );
 				$thumbnail_id = get_term_meta( $category_id, 'thumbnail_id', true );
 				$image        = wp_get_attachment_url( $thumbnail_id );
+				$term  = get_term_by( 'id', $category_id, 'product_cat', 'ARRAY_A' );;
 
 				if ( $show_badge == '1' && $image ) {
-					echo '<img src="' . esc_url( $image ) . '" class="badge-item" alt="' . esc_attr( get_cat_name( $category_id ) ) . ' badge" />';
+					echo '<a href="' . get_term_link( $category_id ) . '" class="item-link">';
+					echo '<img src="' . esc_url( $image ) . '" class="item-img" alt="' . $term['slug'] . ' badge" />';
+					echo '<span class="item-name">' . $term['name'] . '</span>';
+                    echo '</a>';
 				}
 			}
 			echo '</div>';
