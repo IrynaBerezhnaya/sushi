@@ -110,12 +110,15 @@ function mb_display_plus_quantity_input_button( $return = false ) {
 add_action( 'woocommerce_after_quantity_input_field', 'mb_display_plus_quantity_input_button' );
 
 /**
- * Display Checkout Total section
+ * Display custom Checkout Total section
  */
-function mb_display_checkout_total_section() { ?>
+function mb_display_custom_checkout_total_section( $return = false ) {
 
-	<div class="checkout-total">
-
+	if ( $return ) {
+		ob_start();
+	} ?>
+	<!--Custom Checkout Total section-->
+	<div class="checkout-total" id="mb_checkout_total">
 		<h3 class="">Разом</h3>
 
 		<?php $cart_items_qty = WC()->cart->get_cart_contents_count(); ?>
@@ -196,12 +199,25 @@ function mb_display_checkout_total_section() { ?>
 				<?php echo ! empty( $store_house_number ) ? ' ' . $store_house_number : ''; ?>
 			</p>
 		<?php } ?>
-
 	</div>
+	<?php if ( $return ) {
+		return ob_get_clean();
+	}
+}
 
-<?php }
+add_action( 'woocommerce_checkout_after_order_review', 'mb_display_custom_checkout_total_section' );
 
-add_action( 'woocommerce_checkout_after_order_review', 'mb_display_checkout_total_section' );
+/**
+ * Add custom Checkout Total section to order review fragments (for automatic AJAX updating)
+ */
+function mb_add_custom_checkout_total_section_to_order_review_fragments( $fragments ) {
+
+	$fragments['#mb_checkout_total'] = mb_display_custom_checkout_total_section( true );
+
+	return $fragments;
+}
+
+add_filter( 'woocommerce_update_order_review_fragments', 'mb_add_custom_checkout_total_section_to_order_review_fragments' );
 
 /**
  * Change woocommerce shipping package name
