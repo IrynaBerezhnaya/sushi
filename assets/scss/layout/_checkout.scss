@@ -304,3 +304,25 @@
 #payment .payment_methods > li:not(.woocommerce-notice):hover {
 	background-color: transparent;
 }
+
+.shipping-zones {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	margin: 30px 0 15px;
+	column-gap: 10px;
+	@include media-up($bp-M) {
+		column-gap: 15px;
+	}
+
+	.button {
+		margin-bottom: 10px;
+		max-width: 215px;
+		width: calc(50% - 5px);
+
+		@include media-up($bp-M) {
+			margin-bottom: 15px;
+			width: calc(50% - 10px);
+		}
+	}
+}

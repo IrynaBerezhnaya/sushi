@@ -67,6 +67,22 @@ jQuery(document).ready(function ($) {
         $qty.trigger('change');
     });
 
+    //open popup
+    body.on('click', '.open_popup__js', function (e) {
+        e.preventDefault();
+        let popup = $(this).data('open-popup-on-click');
+        if (popup) {
+            $(popup).addClass('active');
+            $('#popup_overlay').addClass('active');
+        }
+    });
+
+    //popup_overlay
+    body.on('click', '#popup_overlay', function () {
+        $('.popup__js.active').removeClass('active');
+        $(this).removeClass('active');
+    });
+
 
 });
 
@@ -106,5 +122,6 @@ function swiperMenu() {
         init = false;
     }
 }
+
 swiperMenu();
 window.addEventListener("resize", swiperMenu);

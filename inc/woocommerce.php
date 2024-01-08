@@ -222,13 +222,13 @@ function ib_show_custom_badges( $product = false ) {
 				$show_badge   = get_field( 'show_badge', 'product_cat_' . $category_id );
 				$thumbnail_id = get_term_meta( $category_id, 'thumbnail_id', true );
 				$image        = wp_get_attachment_url( $thumbnail_id );
-				$term  = get_term_by( 'id', $category_id, 'product_cat', 'ARRAY_A' );;
+				$term         = get_term_by( 'id', $category_id, 'product_cat', 'ARRAY_A' );;
 
 				if ( $show_badge == '1' && $image ) {
 					echo '<a href="' . get_term_link( $category_id ) . '" class="item-link">';
 					echo '<img src="' . esc_url( $image ) . '" class="item-img" alt="' . $term['slug'] . ' badge" />';
 					echo '<span class="item-name">' . $term['name'] . '</span>';
-                    echo '</a>';
+					echo '</a>';
 				}
 			}
 			echo '</div>';
@@ -249,3 +249,70 @@ function ib_change_buy_button_text( $button_text ) {
 }
 
 add_filter( 'woocommerce_product_add_to_cart_text', 'ib_change_buy_button_text' );
+
+
+/**
+ * Display popup overlay
+ */
+function mb_display_popup_overlay() {
+	echo '<div class="popup-overlay active_" id="popup_overlay"></div>';
+}
+
+add_action( 'storefront_before_site', 'mb_display_popup_overlay' );
+
+
+/**
+ * Display Shipping City popup
+ */
+function mb_display_shipping_city_popup() {
+	echo '<div class="popup popup__js" id="shipping_city_popup">';
+
+	echo '<h3>' . __( 'Select a city' ) . '</h3>';
+
+	$shipping_zones = mb_get_all_shipping_zones();
+	if ( ! empty( $shipping_zones ) ) {
+
+		echo '<div class="shipping-zones">';
+		foreach ( $shipping_zones as $zone ) {
+
+			//get shipping zones:
+			$zone_locations = $zone->get_zone_locations();
+			if ( ! empty( $zone_locations ) ) {
+				foreach ( $zone_locations as $zone_location ) {
+
+					//get postcode:
+					$location_type = $zone_location->type ?? '';
+					$post_code     = $zone_location->code ?? '';
+					if ( $location_type === 'postcode' && ! empty( $post_code ) ) {
+						$zone_name = $zone->get_zone_name();
+
+						echo '<button class="button btn-secondary">' . $zone_name . '</button>';
+						break;
+					}
+				}
+			}
+		}
+
+		echo '</div>';
+		echo '<button class="button btn-primary center">' . __( 'Confirm' ) . '</button>';
+
+	}
+
+	echo '</div>';
+}
+
+add_action( 'storefront_before_site', 'mb_display_shipping_city_popup' );
+
+/**
+ * Get all shipping zones
+ */
+function mb_get_all_shipping_zones() {
+	$data_store = WC_Data_Store::load( 'shipping-zone' );
+	$raw_zones  = $data_store->get_zones();
+	foreach ( $raw_zones as $raw_zone ) {
+		$zones[] = new WC_Shipping_Zone( $raw_zone );
+	}
+	$zones[] = new WC_Shipping_Zone( 0 ); // ADD ZONE "0" MANUALLY
+
+	return $zones;
+}

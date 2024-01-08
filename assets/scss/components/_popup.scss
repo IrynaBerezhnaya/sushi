@@ -1,0 +1,47 @@
+.popup {
+
+	background-color: $color-2;
+	border-radius: 50px;
+	position: fixed;
+	z-index: 100;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	width: calc(100% - 30px);
+	max-width: 100%;
+	opacity: 0;
+	visibility: hidden;
+	text-align: center;
+	padding: 50px 15px;
+
+	&.active {
+		opacity: 1;
+		visibility: visible;
+	}
+
+	@include media-up($bp-M) {
+		width: auto;
+		min-width: 570px;
+		padding: 50px;
+	}
+
+
+	&-overlay {
+		position: fixed;
+		z-index: 99;
+		background-color: $color-8;
+		opacity: 0;
+		visibility: hidden;
+		cursor: pointer;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		transition: $transition-ease;
+
+		&.active {
+			opacity: .5;
+			visibility: visible;
+		}
+	}
+}
