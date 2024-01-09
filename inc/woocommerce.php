@@ -316,3 +316,17 @@ function mb_get_all_shipping_zones() {
 
 	return $zones;
 }
+
+
+/**
+ * Add link "Show More"
+ */
+function ib_add_show_more() {
+	?>
+    <div class="show-more-button">
+        <a href="<?php echo get_permalink( woocommerce_get_page_id( 'shop' ) ); ?>" class="button btn-dark-blue"><?php esc_html_e( 'ПОКАЗАТИ БІЛЬШЕ', 'woocommerce' ); ?></a>
+    </div>
+	<?php
+}
+add_action('storefront_homepage_after_popular_products', 'ib_add_show_more');
+add_action('storefront_homepage_after_recent_products', 'ib_add_show_more');

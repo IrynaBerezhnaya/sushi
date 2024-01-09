@@ -523,3 +523,11 @@ ul.products li.product .price ins,
 	display: none !important;
 }
 
+.site-main,
+.storefront-product-section {
+	.show-more-button {
+		display: flex;
+		justify-content: center;
+		margin: 18px 10px 24px;
+	}
+}
