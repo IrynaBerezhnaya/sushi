@@ -49,6 +49,32 @@
 	}
 }
 
+@mixin button-dark-blue($fs) {
+	color: $color-2;
+	background-color: $color-1;
+	border: 1px solid $color-1;
+	height: 49px;
+	line-height: 1;
+	max-width: 218px;
+
+	@include media-up($bp-M) {
+		line-height: 2;
+		height: 62px;
+	}
+
+	@include media-up($bp-L) {
+		max-width: 280px;
+	}
+
+	&:hover,
+	&:active,
+	&:focus {
+		color: $color-1;
+		background-color: transparent;
+		border: 1px solid $color-1;
+	}
+}
+
 .button,
 .button.alt,
 .btn,
@@ -58,6 +84,10 @@
 
 .btn-secondary {
 	@include button-secondary(14px);
+}
+
+.btn-dark-blue {
+	@include button-dark-blue(14px);
 }
 
 .wp-block-button {
