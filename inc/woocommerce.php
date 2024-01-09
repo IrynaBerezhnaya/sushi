@@ -330,3 +330,4 @@ function ib_add_show_more() {
 }
 add_action('storefront_homepage_after_popular_products', 'ib_add_show_more');
 add_action('storefront_homepage_after_recent_products', 'ib_add_show_more');
+add_action('woocommerce_after_main_content', 'ib_add_show_more');
