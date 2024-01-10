@@ -122,7 +122,13 @@ function mb_display_custom_checkout_total_section( $return = false ) {
 		<h3 class="">Разом</h3>
 
 		<?php $cart_items_qty = WC()->cart->get_cart_contents_count(); ?>
-		<?php $s = $cart_items_qty > 1 ? 'и' : ''; ?>
+		<?php
+		$s = match ( true ) {
+			$cart_items_qty > 4 => 'ів',
+			$cart_items_qty > 1 => 'и',
+			default => '',
+		};
+		?>
 
 		<div class="row">
 			<p class="col col-1"><?php echo $cart_items_qty; ?> товар<?php echo $s; ?> на суму </p>
@@ -251,15 +257,15 @@ add_filter( 'woocommerce_cart_shipping_method_full_label', 'mb_change_free_shipp
  */
 function mb_set_checkout_fields_default_values( $value, $input ) {
 
-	write_log('### mb_set_checkout_fields_default_values ###');
-
 	if ( $input === 'billing_city' ) {
-		write_log('$input === billing_city');
+		write_log( '$input === billing_city' );
+
 		return mb_get_user_city();
 	}
 
 	if ( $input === 'billing_postcode' ) {
-		write_log('$input === billing_postcode');
+		write_log( '$input === billing_postcode' );
+
 		return mb_get_user_postcode();
 	}
 
