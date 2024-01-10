@@ -70,7 +70,7 @@
 	&:active,
 	&:focus {
 		color: $color-1;
-		background-color: transparent;
+		background-color: $color-2;
 		border: 1px solid $color-1;
 	}
 }
