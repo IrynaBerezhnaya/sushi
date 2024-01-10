@@ -63,3 +63,40 @@ function ib_promotion_banner() {
 }
 
 add_action('storefront_homepage', 'ib_promotion_banner');
+
+/**
+ * Display Sets Section on Home Page
+ */
+function ib_display_sets() {
+    if (is_front_page()) :
+	$args = array(
+		'post_type'      => 'product',
+		'posts_per_page' => 6,
+		'product_cat'    => 'sets',
+	);
+
+	$products = new WP_Query( $args );
+	$category = get_term_by('slug', 'sets', 'product_cat');
+
+	if ( $products->have_posts() ) {
+		echo '<div class="col-full">';
+	    echo '<section class="storefront-product-section storefront-'.$category->slug.'-products">';
+	    echo '<h2 class="section-title">'.$category->name.'</h2>';
+		echo '<div class="woocommerce columns-3">';
+		echo '<ul class="products columns-3">';
+		while ( $products->have_posts() ) {
+			$products->the_post();
+			wc_get_template_part( 'content', 'product' );
+		}
+		echo '</ul>';
+		echo '</div>';
+		echo '</section>';
+		echo '</div>';
+	} else {
+		echo 'No products found';
+	}
+
+	wp_reset_postdata();
+    endif;
+}
+add_action('storefront_before_footer', 'ib_display_sets', 20);

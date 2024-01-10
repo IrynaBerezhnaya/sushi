@@ -537,3 +537,11 @@ ul.products li.product .price ins,
 		display: none;
 	}
 }
+
+ul.products.columns-3 li.product {
+	@include media-up($bp-M) {
+		width: 30.4347826087%;
+		float: left;
+		margin-right: 4.347826087%;
+	}
+}
