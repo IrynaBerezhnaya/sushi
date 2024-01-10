@@ -248,37 +248,22 @@ add_filter( 'woocommerce_cart_shipping_method_full_label', 'mb_change_free_shipp
 
 /**
  * Set checkout fields default values
- *
- * @param $fields
- *
- * @return array $fields
  */
-function mb_set_checkout_fields_default_values( $fields ) {
+function mb_set_checkout_fields_default_values( $value, $input ) {
 
-	//set default values for Billing City and Billing Postcode:
-	if ( isset( $fields['billing']['billing_city'] ) && isset( $fields['billing']['billing_postcode'] ) ) {
+	write_log('### mb_set_checkout_fields_default_values ###');
 
-		$shipping_zones = mb_get_all_shipping_zones();
-		if ( ! empty( $shipping_zones ) ) {
-			$default_shipping_zone = $shipping_zones[0];
-			if ( $default_shipping_zone ) {
-				$zone_locations = $default_shipping_zone->get_zone_locations();
-				if ( ! empty( $zone_locations ) ) {
-					foreach ( $zone_locations as $zone_location ) {
-
-						$location_type = $zone_location->type ?? '';
-						$postcode      = $zone_location->code ?? '';
-						if ( $location_type === 'postcode' && ! empty( $postcode ) ) {
-							$fields['billing']['billing_city']['default'] = $default_shipping_zone->get_zone_name();;
-							$fields['billing']['billing_postcode']['default'] = $postcode;
-						}
-					}
-				}
-			}
-		}
+	if ( $input === 'billing_city' ) {
+		write_log('$input === billing_city');
+		return mb_get_user_city();
 	}
 
-	return $fields;
+	if ( $input === 'billing_postcode' ) {
+		write_log('$input === billing_postcode');
+		return mb_get_user_postcode();
+	}
+
+	return $value;
 }
 
-add_filter( 'woocommerce_checkout_fields', 'mb_set_checkout_fields_default_values', 999999 );
+add_filter( 'woocommerce_checkout_get_value', 'mb_set_checkout_fields_default_values', 10, 2 );
