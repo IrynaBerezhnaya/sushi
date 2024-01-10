@@ -184,6 +184,11 @@
 			font-family: $font-light;
 			font-weight: 300;
 			color: $color-11;
+
+			.woocommerce-Price-amount {
+				font-family: $font-base;
+				font-weight: 400;
+			}
 		}
 
 		.col-2,

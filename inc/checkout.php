@@ -240,6 +240,13 @@ add_filter( 'woocommerce_shipping_package_name', 'mb_change_woocommerce_shipping
  */
 function mb_change_free_shipping_label( $label, $method ) {
 
+	//remove label (Єдиний тариф:)
+	$price_html_start = '<span class="woocommerce-Price-amount ';
+	$position         = strpos( $label, $price_html_start );
+	if ( $position !== false ) {
+		$label = substr( $label, $position );
+	}
+
 	if ( $method ) {
 		$method_id = $method->method_id ?? '';
 		if ( $method_id === 'free_shipping' ) {
