@@ -3,10 +3,10 @@
 
     h2 {
         color: $color-1;
-        padding: 10px 10px 34px;
+        padding: 83px 10px 34px;
 
         @include media-up($bp-L) {
-            padding: 10px 10px 53px;
+            padding: 148px 10px 53px;
         }
 
         &.title {
