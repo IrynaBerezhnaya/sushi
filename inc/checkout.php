@@ -198,7 +198,7 @@ function mb_display_custom_checkout_total_section( $return = false ) {
 		$store_house_number = get_option( 'woocommerce_store_address_2' );
 
 		if ( ! empty( $store_city ) && ! empty( $store_street ) ) { ?>
-			<p class="store-location">
+			<p class="store-location" title="Чекаємо на вас за цією адресою">
 				<strong><?php echo $store_city; ?>,</strong>
 				<?php esc_html_e( 'вул.', 'woocommerce' ); ?>
 				<?php echo $store_street; ?>
