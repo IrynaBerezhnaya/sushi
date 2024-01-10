@@ -545,3 +545,33 @@ ul.products.columns-3 li.product {
 		margin-right: 4.347826087%;
 	}
 }
+
+.storefront-breadcrumb {
+	margin: 0;
+	padding: 64px 0 16px;
+
+	.woocommerce-breadcrumb {
+		font-family: $font-light;
+		font-size: 12px;
+		color: $color-23;
+		text-decoration: none;
+		line-height: 110%;
+
+		a {
+			font-family: $font-light;
+			font-size: 12px;
+			color: $color-23;
+			text-decoration: none;
+			line-height: 110%;
+			transition: 200ms ease-in-out;
+
+			&:hover {
+				color: $color-24;
+			}
+
+			&::before {
+				display: none;
+			}
+		}
+	}
+}
