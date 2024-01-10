@@ -258,14 +258,10 @@ add_filter( 'woocommerce_cart_shipping_method_full_label', 'mb_change_free_shipp
 function mb_set_checkout_fields_default_values( $value, $input ) {
 
 	if ( $input === 'billing_city' ) {
-		write_log( '$input === billing_city' );
-
 		return mb_get_user_city();
 	}
 
 	if ( $input === 'billing_postcode' ) {
-		write_log( '$input === billing_postcode' );
-
 		return mb_get_user_postcode();
 	}
 
