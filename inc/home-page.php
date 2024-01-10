@@ -69,34 +69,42 @@ add_action('storefront_homepage', 'ib_promotion_banner');
  */
 function ib_display_sets() {
     if (is_front_page()) :
-	$args = array(
-		'post_type'      => 'product',
-		'posts_per_page' => 6,
-		'product_cat'    => 'sets',
-	);
+	    $category_slugs = array('sets', 'rolls');
+        foreach ($category_slugs as $category_slug) {
+	    $category = get_term_by('slug', $category_slug, 'product_cat');
 
-	$products = new WP_Query( $args );
-	$category = get_term_by('slug', 'sets', 'product_cat');
+	    $args = array(
+		    'post_type'      => 'product',
+		    'posts_per_page' => ($category_slug === 'rolls') ? 12 : 6,
+		    'product_cat'    => $category_slug,
+	    );
+	    $products = new WP_Query( $args );
 
-	if ( $products->have_posts() ) {
-		echo '<div class="col-full">';
-	    echo '<section class="storefront-product-section storefront-'.$category->slug.'-products">';
-	    echo '<h2 class="section-title">'.$category->name.'</h2>';
-		echo '<div class="woocommerce columns-3">';
-		echo '<ul class="products columns-3">';
-		while ( $products->have_posts() ) {
-			$products->the_post();
-			wc_get_template_part( 'content', 'product' );
-		}
-		echo '</ul>';
-		echo '</div>';
-		echo '</section>';
-		echo '</div>';
-	} else {
-		echo 'No products found';
-	}
+	    if ($category && $products->have_posts()) {
+		    echo '<div class="col-full">';
+		    echo '<section class="storefront-product-section storefront-'.$category->slug.'-products">';
+		    echo '<h2 class="section-title">'.$category->name.'</h2>';
+		    echo '<div class="woocommerce columns-3">';
+		    echo '<ul class="products columns-3">';
+		    while ( $products->have_posts() ) {
+			    $products->the_post();
+			    wc_get_template_part( 'content', 'product' );
+		    }
+		    echo '</ul>';
+		    echo '</div>';
+		    echo '<div class="show-more-button">';
+		    echo '<a href="'. get_permalink( woocommerce_get_page_id( "shop" ) ) .'" class="button btn-dark-blue">';
+		    echo esc_html_e( "ПОКАЗАТИ БІЛЬШЕ", "woocommerce" );
+		    echo '</a>';
+		    echo '</div>';
+		    echo '</section>';
+		    echo '</div>';
+	    } else {
+		    echo 'No products found';
+        }
+	        wp_reset_postdata();
+    }
 
-	wp_reset_postdata();
     endif;
 }
 add_action('storefront_before_footer', 'ib_display_sets', 20);
