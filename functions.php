@@ -7,15 +7,16 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Connecting scripts and styles
  */
 function add_scripts_and_styles() {
-	wp_enqueue_script( 'main', get_stylesheet_directory_uri() . '/assets/js/main.js', array('jquery'), null, true );
+	wp_enqueue_script( 'main', get_stylesheet_directory_uri() . '/assets/js/main.js', array( 'jquery' ), null, true );
 	wp_enqueue_style( 'swiper', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css', array(), false );
 	wp_enqueue_script( 'swiper', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js', array(), false );
 
 	wp_localize_script( 'main', 'mb_localize', array(
-			'admin_url'   => admin_url( 'admin-ajax.php' ),
+			'admin_url' => admin_url( 'admin-ajax.php' ),
 		)
 	);
 }
+
 add_action( 'wp_enqueue_scripts', 'add_scripts_and_styles' );
 
 /**
@@ -24,6 +25,7 @@ function mb_admin_enqueue_scripts() {
 //	wp_enqueue_style( 'admin', get_stylesheet_directory_uri() . '/assets/admin_css/admin.css', array(), wp_get_theme()->get( 'Version' ) );
 	wp_enqueue_script( 'admin', get_stylesheet_directory_uri() . '/assets/admin_js/admin.js', array( 'jquery' ), '1.0.1', true );
 }
+
 add_action( 'admin_enqueue_scripts', 'mb_admin_enqueue_scripts' );
 
 require 'inc/checkout.php';
@@ -34,7 +36,7 @@ require 'inc/ajax_handlers.php';
 /**
  * Add acf options page
  */
-if (function_exists('acf_add_options_page')) {
+if ( function_exists( 'acf_add_options_page' ) ) {
 	acf_add_options_page();
 }
 
@@ -113,21 +115,6 @@ function ib_default_address_fields( $fields ) {
 }
 
 add_filter( 'woocommerce_billing_fields', 'ib_default_address_fields' );
-
-/**
- * Remove the 'billing_company' field
- *
- * @param $fields
- *
- * @return array $fields
- */
-function ib_override_checkout_fields( $fields ) {
-	unset( $fields['billing']['billing_company'] );
-
-	return $fields;
-}
-
-add_filter( 'woocommerce_checkout_fields', 'ib_override_checkout_fields' );
 
 /**
  * Add a new checkout field
@@ -272,10 +259,10 @@ function ib_display_order_data( $order ) {
 
 	if ( $office_address !== '' ) { ?>
 
-        <tr>
-            <th>Selected address:</th>
-            <td class="ib-background-custom-field"><?php echo $office_address; ?></td>
-        </tr>
+		<tr>
+			<th>Selected address:</th>
+			<td class="ib-background-custom-field"><?php echo $office_address; ?></td>
+		</tr>
 
 		<?php
 	}
@@ -322,7 +309,7 @@ function ib_change_add_to_cart_text( $text, $product ) {
 			}
 
 			?>
-            <script>
+			<script>
                 jQuery(document).ready(function ($) {
 
 
@@ -344,7 +331,7 @@ function ib_change_add_to_cart_text( $text, $product ) {
                     });
 
                 });
-            </script>
+			</script>
 			<?php
 		} else {
 			$text = __( "Pre Order", "woocommerce" );
@@ -386,7 +373,7 @@ function ib_add_availability_date() {
 				return;
 			} ?>
 
-            <script>
+			<script>
                 jQuery(document).ready(function ($) {
 
 
@@ -408,7 +395,7 @@ function ib_add_availability_date() {
 
 
                 });
-            </script>
+			</script>
 			<?php
 
 		} else {
@@ -425,7 +412,7 @@ add_action( 'woocommerce_after_add_to_cart_button', 'ib_add_availability_date' )
  */
 function ib_date_picker() {
 	?>
-    <script type="text/javascript">
+	<script type="text/javascript">
         (function ($) {
 
             acf.add_filter('date_picker_args', function (args, $field) {
@@ -438,7 +425,7 @@ function ib_date_picker() {
             });
 
         })(jQuery);
-    </script>
+	</script>
 	<?php
 }
 
@@ -571,12 +558,12 @@ function ib_styling_admin_order_list() {
 	if ( isset( $_GET['post_type'] ) && $_GET['post_type'] == 'shop_order' ) {
 
 		?>
-        <style>
+		<style>
             .order-status.status-pre-order {
                 background: #d7bff8;
                 color: #680e94;
             }
-        </style>
+		</style>
 		<?php
 	}
 }
@@ -669,7 +656,7 @@ function ib_add_pre_order_email_before_order_table( $order, $sent_to_admin, $pla
 
 	if ( $order->has_status( 'pre-order' ) ) {
 		?>
-        <h3>Pre Order</h3>
+		<h3>Pre Order</h3>
 		<?php
 	}
 
@@ -778,9 +765,12 @@ if ( ! function_exists( 'storefront_primary_navigation' ) ) {
 	 */
 	function storefront_primary_navigation() { ?>
 
-        <nav id="site-navigation" class="main-navigation" role="navigation" aria-label="<?php esc_attr_e( 'Primary Navigation', 'storefront' ); ?>">
+		<nav id="site-navigation" class="main-navigation" role="navigation"
+		     aria-label="<?php esc_attr_e( 'Primary Navigation', 'storefront' ); ?>">
 
-            <button class="menu-toggle" aria-controls="site-navigation" aria-expanded="false"><span><?php echo esc_html( apply_filters( 'storefront_menu_toggle_text', __( 'Menu', 'storefront' ) ) ); ?></span></button>
+			<button class="menu-toggle" aria-controls="site-navigation" aria-expanded="false">
+				<span><?php echo esc_html( apply_filters( 'storefront_menu_toggle_text', __( 'Menu', 'storefront' ) ) ); ?></span>
+			</button>
 			<?php
 			wp_nav_menu(
 				array(
@@ -796,7 +786,7 @@ if ( ! function_exists( 'storefront_primary_navigation' ) ) {
 				)
 			);
 			?>
-        </nav><!-- #site-navigation -->
+		</nav><!-- #site-navigation -->
 		<?php
 	}
 }
@@ -809,12 +799,13 @@ function ib_remove_functions() {
 	remove_action( 'storefront_header', 'storefront_product_search', 40 );
 	remove_action( 'storefront_header', 'storefront_header_cart', 60 );
 	remove_action( 'storefront_homepage', 'storefront_homepage_header', 10 );
-    remove_action( 'homepage', 'storefront_product_categories', 20 );
-    remove_action( 'homepage', 'storefront_featured_products', 40 );
-    remove_action( 'homepage', 'storefront_on_sale_products', 60 );
-    remove_action( 'homepage', 'storefront_best_selling_products', 70 );
-    remove_action( 'homepage', 'storefront_popular_products', 50 );
-    remove_action( 'homepage', 'storefront_recent_products', 30 );
+	remove_action( 'homepage', 'storefront_product_categories', 20 );
+	remove_action( 'homepage', 'storefront_featured_products', 40 );
+	remove_action( 'homepage', 'storefront_on_sale_products', 60 );
+	remove_action( 'homepage', 'storefront_best_selling_products', 70 );
+	remove_action( 'homepage', 'storefront_popular_products', 50 );
+	remove_action( 'homepage', 'storefront_recent_products', 30 );
 }
-add_action('init' , 'ib_remove_functions' );
+
+add_action( 'init', 'ib_remove_functions' );
 

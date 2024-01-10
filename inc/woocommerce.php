@@ -262,46 +262,57 @@ add_action( 'storefront_before_site', 'mb_display_popup_overlay' );
 
 
 /**
- * Display Shipping City popup
+ * Display City Selection popup
  */
-function mb_display_shipping_city_popup() {
-	echo '<div class="popup popup__js" id="shipping_city_popup">';
+function mb_display_city_selection_popup() {
+	echo '<div class="popup popup__js" id="city_selection_popup">';
 
 	echo '<h3>' . __( 'Select a city' ) . '</h3>';
 
+	//get shipping zones:
 	$shipping_zones = mb_get_all_shipping_zones();
 	if ( ! empty( $shipping_zones ) ) {
 
+		$user_postcode = mb_get_user_postcode();
 		echo '<div class="shipping-zones">';
+		$i = 0;
 		foreach ( $shipping_zones as $zone ) {
 
-			//get shipping zones:
+			//get shipping zone locations (only first one):
 			$zone_locations = $zone->get_zone_locations();
 			if ( ! empty( $zone_locations ) ) {
 				foreach ( $zone_locations as $zone_location ) {
 
 					//get postcode:
 					$location_type = $zone_location->type ?? '';
-					$post_code     = $zone_location->code ?? '';
-					if ( $location_type === 'postcode' && ! empty( $post_code ) ) {
+					$postcode      = $zone_location->code ?? '';
+
+					if ( $location_type === 'postcode' && ! empty( $postcode ) ) {
 						$zone_name = $zone->get_zone_name();
 
-						echo '<button class="button btn-secondary">' . $zone_name . '</button>';
+						if ( $user_postcode ) {
+							$active = $user_postcode === $postcode ? ' active ' : '';
+						} else {
+							$active = $i === 0 ? ' active ' : '';
+						}
+
+						echo '<button class="button btn-secondary shipping_zone__js ' . $active . '" data-city="' . $zone_name . '" data-post-code="' . $postcode . '">' . $zone_name . '</button>';
 						break;
 					}
 				}
 			}
+			$i ++;
 		}
 
 		echo '</div>';
-		echo '<button class="button btn-primary center">' . __( 'Confirm' ) . '</button>';
+		echo '<button class="button btn-primary center" id="shipping_zone_submit">' . __( 'Confirm' ) . '</button>';
 
 	}
 
 	echo '</div>';
 }
 
-add_action( 'storefront_before_site', 'mb_display_shipping_city_popup' );
+add_action( 'storefront_before_site', 'mb_display_city_selection_popup' );
 
 /**
  * Get all shipping zones
@@ -359,3 +370,39 @@ function ib_display_section_link_to_page() {
     }
 }
 add_action('storefront_before_footer', 'ib_display_section_link_to_page');
+
+/**
+ * Update user address details AJAX handler
+ */
+function mb_update_user_address_details_ajax_handler() {
+
+	$city     = isset( $_POST['city'] ) ? wc_clean( $_POST['city'] ) : '';
+	$postcode = isset( $_POST['postcode'] ) ? wc_clean( $_POST['postcode'] ) : '';
+
+	if ( ! empty( $city ) && ! empty( $postcode ) ) {
+		$user_id = get_current_user_id();
+
+		if ( $user_id ) {
+			update_user_meta( $user_id, 'billing_city', $city );
+			update_user_meta( $user_id, 'billing_postcode', $postcode );
+		} else {
+			WC()->session->set( 'mb_customer_billing_city', $city );
+			WC()->session->set( 'mb_customer_billing_postcode', $postcode );
+		}
+	}
+
+	wp_die();
+
+}
+
+/**
+ * Get user postcode
+ */
+function mb_get_user_postcode() {
+	$user_id = get_current_user_id();
+
+	$postcode = $user_id ? get_user_meta( $user_id, 'billing_postcode', true ) : WC()->session->get( 'mb_customer_billing_postcode' );
+
+	return $postcode;
+
+}

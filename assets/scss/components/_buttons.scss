@@ -25,7 +25,8 @@
 
 	&:hover,
 	&:active,
-	&:focus {
+	&:focus,
+	&.active {
 		background-color: $color-10-1;
 		outline: none;
 	}
@@ -43,7 +44,8 @@
 
 	&:hover,
 	&:active,
-	&:focus {
+	&:focus,
+	&.active {
 		color: $color-2;
 		background-color: $color-1;
 	}

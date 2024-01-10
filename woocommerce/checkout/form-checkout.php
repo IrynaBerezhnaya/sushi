@@ -53,8 +53,6 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
 
 		<?php do_action( 'woocommerce_checkout_before_order_review_heading' ); ?>
 
-		<?php echo '<a href="#" class="open_popup__js" data-open-popup-on-click="#shipping_city_popup">Ваше мiсто</a>'?>
-
 		<h3 id="order_review_heading"><span
 				class="title-number">2</span><?php esc_html_e( 'Your order', 'woocommerce' ); ?></h3>
 

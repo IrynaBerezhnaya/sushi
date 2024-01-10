@@ -78,10 +78,68 @@ jQuery(document).ready(function ($) {
     });
 
     //popup_overlay
-    body.on('click', '#popup_overlay', function () {
+    body.on('click', '#popup_overlay', closePopups);
+
+    function closePopups() {
         $('.popup__js.active').removeClass('active');
-        $(this).removeClass('active');
-    });
+        $('#popup_overlay').removeClass('active');
+    }
+
+    let $citySelectionPopup = $('#city_selection_popup');
+    if ($citySelectionPopup.length) {
+        $citySelectionPopup.on('click', '.shipping_zone__js', function () {
+            let $shippingZoneButton = $(this);
+
+            $citySelectionPopup.find('.active').removeClass('active');
+            $shippingZoneButton.addClass('active');
+        });
+
+        $citySelectionPopup.on('click', '#shipping_zone_submit', function () {
+            let $shippingZoneButton = $citySelectionPopup.find('.shipping_zone__js.active'),
+                city = $shippingZoneButton.data('city'),
+                postcode = $shippingZoneButton.data('post-code');
+
+            $.ajax({
+                url: mb_localize.admin_url,
+                type: "POST",
+                data: {
+                    'action': 'mb_update_user_address_details',
+                    'city': city,
+                    'postcode': postcode,
+                },
+                error: function () {
+                    console.log('error');
+                },
+                success: function (response) {
+                    closePopups();
+
+                    if ($('#customer_details').length) {
+                        $('#billing_city').val(city);
+                        $('#billing_postcode').val(postcode);
+                        $(document.body).trigger('update_checkout');
+                    }
+                }
+            });
+        });
+
+
+        body.on('click', '#billing_city_field, #billing_city_field .woocommerce-input-wrapper', function (e) {
+            e.preventDefault();
+
+            //make necessary button active before opening:
+            let currentValue = $(this).find('#billing_city').val();
+            if (currentValue !== '') {
+                let $buttonToMakeActive = $citySelectionPopup.find('.shipping_zone__js[data-city="' + currentValue + '"]');
+                if ($buttonToMakeActive.length) {
+                    $citySelectionPopup.find('.shipping_zone__js.active').removeClass('active');
+                    $buttonToMakeActive.addClass('active');
+                }
+            }
+
+            $citySelectionPopup.addClass('active');
+            $('#popup_overlay').addClass('active');
+        });
+    }
 
 
 });

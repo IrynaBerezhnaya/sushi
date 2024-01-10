@@ -243,6 +243,55 @@
 		}
 	}
 
+	.billing-city-field {
+		border: 1px solid $color-1;
+		border-radius: 24px;
+		padding: 15px 50px;
+		cursor: pointer;
+		position: relative;
+
+		&::before {
+			content: url(../../assets/img/location_blue.svg);
+			position: absolute;
+			left: 12px;
+			top: 23px;
+		}
+
+		&::after {
+			content: url(../../assets/img/arrow_right_blue.svg);
+			position: absolute;
+			right: 20px;
+			top: 30px;
+		}
+
+		label {
+			color: $color-18;
+			font-family: $font-base;
+			font-size: 12px;
+			font-weight: 400;
+			cursor: pointer;
+		}
+
+		.woocommerce-input-wrapper {
+			position: relative;
+			z-index: -1;
+		}
+
+		input {
+			border: none;
+			color: $color-1;
+			font-family: $font-bold;
+			font-size: 16px;
+			font-weight: 700;
+			padding: 0;
+			-webkit-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			user-select: none;
+			cursor: pointer;
+		}
+	}
+
 }
 
 .woocommerce-message,

@@ -13,6 +13,7 @@
 	visibility: hidden;
 	text-align: center;
 	padding: 50px 15px;
+	transition: $transition-ease;
 
 	&.active {
 		opacity: 1;
