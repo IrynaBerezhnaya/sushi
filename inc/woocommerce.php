@@ -331,3 +331,31 @@ function ib_add_show_more() {
 add_action('storefront_homepage_after_popular_products', 'ib_add_show_more');
 add_action('storefront_homepage_after_recent_products', 'ib_add_show_more');
 add_action('woocommerce_after_main_content', 'ib_add_show_more');
+
+/**
+ * Add section "Link to the page"
+ */
+function ib_display_section_link_to_page() {
+	$title = get_field('link_title');
+	$link  = get_field('link_page');
+	$image = get_field('link_image');
+
+	if ($link) {
+        echo '<section class="link-page">';
+        echo '<div class="link-page__container">';
+		if ($title) {
+			echo '<div class="link-page__container-left">';
+			echo $title;
+			echo '<a href="'. $link['url'] .'" class="button btn-dark-blue">'. $link['title'] .'</a>';
+			echo '</div>';
+        }
+		if ($image) {
+			echo '<div class="link-page__container-right">';
+			echo '<img src="'. $image['url'] .'" class="image">';
+			echo '</div>';
+        }
+        echo '</div>';
+        echo '</section>';
+    }
+}
+add_action('storefront_before_footer', 'ib_display_section_link_to_page');

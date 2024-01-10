@@ -1,0 +1,67 @@
+.link-page {
+	background: no-repeat url(../../assets/img/bgr-orange.png);
+	margin: 64px 0 74px;
+	background-size: cover;
+
+	&__container {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		max-width: 1528px;
+		margin: 0 auto;
+		padding: 61px 15px 25px;
+
+		@include media-up($bp-M) {
+			padding-left: 50px;
+			padding-right: 50px;
+		}
+
+		@include media-up($bp-L) {
+			flex-direction: row;
+			justify-content: space-between;
+			padding: 17px 50px 31px;
+		}
+
+		@include media-up($bp-4XL) {
+			padding: 17px 0 31px;
+		}
+
+		&-left {
+			h2,
+			p {
+				color: $color-2;
+				text-transform: none;
+				padding: 0 0 22px;
+				font-size: 18px;
+				line-height: 150%;
+
+				@include media-up($bp-L) {
+					font-size: 26px;
+					line-height: 110%;
+					text-align: left;
+					padding: 40px 0 27px;
+					line-height: 110%;
+				}
+			}
+
+			a {
+				margin: 0 auto;
+				max-width: 179px;
+
+				@include media-up($bp-L) {
+					max-width: 187px;
+					margin: 0;
+				}
+			}
+		}
+
+		&-right {
+			padding-top: 40px;
+
+			@include media-up($bp-L) {
+				padding-top: 0;
+			}
+		}
+	}
+}
