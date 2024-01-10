@@ -193,7 +193,8 @@
         border-radius: 26px;
 
         @include media-up($bp-M) {
-          max-width: 200px;
+          max-width: 160px;
+          padding: 10px;
         }
       }
 

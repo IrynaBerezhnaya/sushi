@@ -24,7 +24,7 @@ function ib_promotion_banner() {
 
         if ($product_1 && $product_2) {
 
-            $original_price = $product_1->get_price();
+            $original_price = $product_1->regular_price;
             $discount_amount = $original_price * ($discount / 100);
             $reduced_price = $original_price - $discount_amount;
 
@@ -46,7 +46,7 @@ function ib_promotion_banner() {
 			<div class="banner__section-left"> <?php echo $product_1->get_image(); ?>
 			<h2><?php echo $product_1->get_name(); ?></h2>
 			<p class="ingredients"><?php esc_html_e( 'Cклад: ', 'woocommerce' ); ?><?php echo implode(', ', $term_array); ?></p>
-			<p class="price"><del><?php echo $product_1->get_price_html(); ?></del> <span class="new-price"><?php echo wc_price($reduced_price); ?></span></p>
+			<p class="price"><del><?php echo wc_price($original_price); ?></del> <span class="new-price"><?php echo wc_price($reduced_price); ?></span></p>
 			</div>
 			<div class="plus"></div>
 			<div class="banner__section-right">
