@@ -406,3 +406,13 @@ function mb_get_user_postcode() {
 	return $postcode;
 
 }
+
+/**
+ * Change the breadcrumb separator
+ */
+function ib_change_breadcrumb_delimiter( $defaults ) {
+	$defaults['delimiter'] = ' &ndash; ';
+	return $defaults;
+}
+
+add_filter( 'woocommerce_breadcrumb_defaults', 'ib_change_breadcrumb_delimiter', 20 );
