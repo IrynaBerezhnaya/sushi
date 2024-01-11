@@ -416,3 +416,12 @@ function ib_change_breadcrumb_delimiter( $defaults ) {
 }
 
 add_filter( 'woocommerce_breadcrumb_defaults', 'ib_change_breadcrumb_delimiter', 20 );
+
+/**
+ * Disable Link on Single Product Image
+ */
+function ib_remove_product_link( $html ) {
+
+	return strip_tags( $html, '<div><img>' );
+}
+add_filter( 'woocommerce_single_product_image_thumbnail_html', 'ib_remove_product_link' );
