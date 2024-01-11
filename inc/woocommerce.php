@@ -8,6 +8,7 @@ function ib_display_top_bar() {
 	if ( ! empty( $top_bar ) ) : ?>
 		<div class="top-bar">
 			<?php echo $top_bar; ?>
+			<?php mb_display_user_city_top_bar(); ?>
 		</div>
 	<?php endif;
 }
@@ -334,42 +335,45 @@ function mb_get_all_shipping_zones() {
  */
 function ib_add_show_more() {
 	?>
-    <div class="show-more-button">
-        <a href="<?php echo get_permalink( woocommerce_get_page_id( 'shop' ) ); ?>" class="button btn-dark-blue"><?php esc_html_e( 'ПОКАЗАТИ БІЛЬШЕ', 'woocommerce' ); ?></a>
-    </div>
+	<div class="show-more-button">
+		<a href="<?php echo get_permalink( woocommerce_get_page_id( 'shop' ) ); ?>"
+		   class="button btn-dark-blue"><?php esc_html_e( 'ПОКАЗАТИ БІЛЬШЕ', 'woocommerce' ); ?></a>
+	</div>
 	<?php
 }
-add_action('storefront_homepage_after_popular_products', 'ib_add_show_more');
-add_action('storefront_homepage_after_recent_products', 'ib_add_show_more');
-add_action('woocommerce_after_main_content', 'ib_add_show_more');
+
+add_action( 'storefront_homepage_after_popular_products', 'ib_add_show_more' );
+add_action( 'storefront_homepage_after_recent_products', 'ib_add_show_more' );
+add_action( 'woocommerce_after_main_content', 'ib_add_show_more' );
 
 /**
  * Add section "Link to the page"
  */
 function ib_display_section_link_to_page() {
-	$title = get_field('link_title');
-	$link  = get_field('link_page');
-	$image = get_field('link_image');
+	$title = get_field( 'link_title' );
+	$link  = get_field( 'link_page' );
+	$image = get_field( 'link_image' );
 
-	if ($link) {
-        echo '<section class="link-page">';
-        echo '<div class="link-page__container">';
-		if ($title) {
+	if ( $link ) {
+		echo '<section class="link-page">';
+		echo '<div class="link-page__container">';
+		if ( $title ) {
 			echo '<div class="link-page__container-left">';
 			echo $title;
-			echo '<a href="'. $link['url'] .'" class="button btn-dark-blue">'. $link['title'] .'</a>';
+			echo '<a href="' . $link['url'] . '" class="button btn-dark-blue">' . $link['title'] . '</a>';
 			echo '</div>';
-        }
-		if ($image) {
+		}
+		if ( $image ) {
 			echo '<div class="link-page__container-right">';
-			echo '<img src="'. $image['url'] .'" class="image">';
+			echo '<img src="' . $image['url'] . '" class="image">';
 			echo '</div>';
-        }
-        echo '</div>';
-        echo '</section>';
-    }
+		}
+		echo '</div>';
+		echo '</section>';
+	}
 }
-add_action('storefront_before_footer', 'ib_display_section_link_to_page');
+
+add_action( 'storefront_before_footer', 'ib_display_section_link_to_page' );
 
 /**
  * Update user address details AJAX handler
@@ -401,7 +405,27 @@ function mb_update_user_address_details_ajax_handler() {
 function mb_get_user_postcode() {
 	$user_id = get_current_user_id();
 
+	//get postcode from user details/session
 	$postcode = $user_id ? get_user_meta( $user_id, 'billing_postcode', true ) : WC()->session->get( 'mb_customer_billing_postcode' );
+
+	//if empty - get default postcode
+	if ( empty( $postcode ) ) {
+		$shipping_zones = mb_get_all_shipping_zones();
+		if ( ! empty( $shipping_zones ) ) {
+			$default_shipping_zone = $shipping_zones[0] ?? false;
+			if ( $default_shipping_zone ) {
+				$zone_locations = $default_shipping_zone->get_zone_locations();
+				if ( ! empty( $zone_locations ) ) {
+					foreach ( $zone_locations as $zone_location ) {
+						$location_type = $zone_location->type ?? '';
+						if ( $location_type === 'postcode' ) {
+							$postcode = $zone_location->code ?? '';
+						}
+					}
+				}
+			}
+		}
+	}
 
 	return $postcode;
 
@@ -425,3 +449,58 @@ function ib_remove_product_link( $html ) {
 	return strip_tags( $html, '<div><img>' );
 }
 add_filter( 'woocommerce_single_product_image_thumbnail_html', 'ib_remove_product_link' );
+
+/**
+ * Get user city
+ */
+function mb_get_user_city() {
+	$user_id = get_current_user_id();
+
+	//get city from user details/session
+	$city = $user_id ? get_user_meta( $user_id, 'billing_city', true ) : WC()->session->get( 'mb_customer_billing_city' );
+
+	//if empty - get default city
+	if ( empty( $city ) ) {
+		$shipping_zones = mb_get_all_shipping_zones();
+		if ( ! empty( $shipping_zones ) ) {
+			$default_shipping_zone = $shipping_zones[0] ?? false;
+			if ( $default_shipping_zone ) {
+				$city = $default_shipping_zone->get_zone_name();
+			}
+		}
+	}
+
+	return $city;
+
+}
+
+/**
+ * Display user city top bar (in header)
+ */
+function mb_display_user_city_top_bar() {
+
+	$city = mb_get_user_city();
+
+	if ( ! empty( $city ) ) {
+		echo '<p id="user_city_top_bar" class="user-city">Ваше місто: <span id="user_city_top_bar_value">' . $city . '</span></p>';
+
+	}
+}
+
+/**
+ * Init Woocommerce session for not logged in users
+ */
+function mb_woocommerce_session_init() {
+
+	if ( is_admin() || is_user_logged_in() ) {
+		return;
+	}
+
+	if ( isset( WC()->session ) ) {
+		if ( ! WC()->session->has_session() ) {
+			WC()->session->set_customer_session_cookie( true );
+		}
+	}
+}
+
+add_action( 'woocommerce_init', 'mb_woocommerce_session_init' );

@@ -122,7 +122,13 @@ function mb_display_custom_checkout_total_section( $return = false ) {
 		<h3 class="">Разом</h3>
 
 		<?php $cart_items_qty = WC()->cart->get_cart_contents_count(); ?>
-		<?php $s = $cart_items_qty > 1 ? 'и' : ''; ?>
+		<?php
+		$s = match ( true ) {
+			$cart_items_qty > 4 => 'ів',
+			$cart_items_qty > 1 => 'и',
+			default => '',
+		};
+		?>
 
 		<div class="row">
 			<p class="col col-1"><?php echo $cart_items_qty; ?> товар<?php echo $s; ?> на суму </p>
@@ -192,7 +198,7 @@ function mb_display_custom_checkout_total_section( $return = false ) {
 		$store_house_number = get_option( 'woocommerce_store_address_2' );
 
 		if ( ! empty( $store_city ) && ! empty( $store_street ) ) { ?>
-			<p class="store-location">
+			<p class="store-location" title="Чекаємо на вас за цією адресою">
 				<strong><?php echo $store_city; ?>,</strong>
 				<?php esc_html_e( 'вул.', 'woocommerce' ); ?>
 				<?php echo $store_street; ?>
@@ -234,6 +240,13 @@ add_filter( 'woocommerce_shipping_package_name', 'mb_change_woocommerce_shipping
  */
 function mb_change_free_shipping_label( $label, $method ) {
 
+	//remove label (Єдиний тариф:)
+	$price_html_start = '<span class="woocommerce-Price-amount ';
+	$position         = strpos( $label, $price_html_start );
+	if ( $position !== false ) {
+		$label = substr( $label, $position );
+	}
+
 	if ( $method ) {
 		$method_id = $method->method_id ?? '';
 		if ( $method_id === 'free_shipping' ) {
@@ -248,37 +261,18 @@ add_filter( 'woocommerce_cart_shipping_method_full_label', 'mb_change_free_shipp
 
 /**
  * Set checkout fields default values
- *
- * @param $fields
- *
- * @return array $fields
  */
-function mb_set_checkout_fields_default_values( $fields ) {
+function mb_set_checkout_fields_default_values( $value, $input ) {
 
-	//set default values for Billing City and Billing Postcode:
-	if ( isset( $fields['billing']['billing_city'] ) && isset( $fields['billing']['billing_postcode'] ) ) {
-
-		$shipping_zones = mb_get_all_shipping_zones();
-		if ( ! empty( $shipping_zones ) ) {
-			$default_shipping_zone = $shipping_zones[0];
-			if ( $default_shipping_zone ) {
-				$zone_locations = $default_shipping_zone->get_zone_locations();
-				if ( ! empty( $zone_locations ) ) {
-					foreach ( $zone_locations as $zone_location ) {
-
-						$location_type = $zone_location->type ?? '';
-						$postcode      = $zone_location->code ?? '';
-						if ( $location_type === 'postcode' && ! empty( $postcode ) ) {
-							$fields['billing']['billing_city']['default'] = $default_shipping_zone->get_zone_name();;
-							$fields['billing']['billing_postcode']['default'] = $postcode;
-						}
-					}
-				}
-			}
-		}
+	if ( $input === 'billing_city' ) {
+		return mb_get_user_city();
 	}
 
-	return $fields;
+	if ( $input === 'billing_postcode' ) {
+		return mb_get_user_postcode();
+	}
+
+	return $value;
 }
 
-add_filter( 'woocommerce_checkout_fields', 'mb_set_checkout_fields_default_values', 999999 );
+add_filter( 'woocommerce_checkout_get_value', 'mb_set_checkout_fields_default_values', 10, 2 );

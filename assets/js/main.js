@@ -87,6 +87,8 @@ jQuery(document).ready(function ($) {
 
     let $citySelectionPopup = $('#city_selection_popup');
     if ($citySelectionPopup.length) {
+
+        //Cities buttons (Буча, Бровари, ... )
         $citySelectionPopup.on('click', '.shipping_zone__js', function () {
             let $shippingZoneButton = $(this);
 
@@ -94,6 +96,7 @@ jQuery(document).ready(function ($) {
             $shippingZoneButton.addClass('active');
         });
 
+        //City selection Submit
         $citySelectionPopup.on('click', '#shipping_zone_submit', function () {
             let $shippingZoneButton = $citySelectionPopup.find('.shipping_zone__js.active'),
                 city = $shippingZoneButton.data('city'),
@@ -113,16 +116,23 @@ jQuery(document).ready(function ($) {
                 success: function (response) {
                     closePopups();
 
+                    //Insert new value to checkout field:
                     if ($('#customer_details').length) {
                         $('#billing_city').val(city);
                         $('#billing_postcode').val(postcode);
                         $(document.body).trigger('update_checkout');
                     }
+
+                    //Insert new value to header top bar:
+                    let $cityTopBar = $('#user_city_top_bar_value');
+                    if ($cityTopBar.length) {
+                        $cityTopBar.text(city);
+                    }
                 }
             });
         });
 
-
+        //Open City Selection popup from checkout
         body.on('click', '#billing_city_field, #billing_city_field .woocommerce-input-wrapper', function (e) {
             e.preventDefault();
 
@@ -139,6 +149,24 @@ jQuery(document).ready(function ($) {
             $citySelectionPopup.addClass('active');
             $('#popup_overlay').addClass('active');
         });
+
+        //Open City Selection popup from header
+        body.on('click', '#user_city_top_bar', function () {
+
+            //make necessary button active before opening:
+            let currentValue = $(this).find('#user_city_top_bar_value').text();
+            if (currentValue !== '') {
+                let $buttonToMakeActive = $citySelectionPopup.find('.shipping_zone__js[data-city="' + currentValue + '"]');
+                if ($buttonToMakeActive.length) {
+                    $citySelectionPopup.find('.shipping_zone__js.active').removeClass('active');
+                    $buttonToMakeActive.addClass('active');
+                }
+            }
+
+            $citySelectionPopup.addClass('active');
+            $('#popup_overlay').addClass('active');
+        });
+
     }
 
 
