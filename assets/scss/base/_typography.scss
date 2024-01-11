@@ -547,8 +547,13 @@ ul.products.columns-3 li.product {
 }
 
 .storefront-breadcrumb {
+	display: none;
 	margin: 0;
-	padding: 64px 0 16px;
+	padding: 64px 0 6px;
+
+	@include media-up($bp-L) {
+		display: block;
+	}
 
 	.woocommerce-breadcrumb {
 		font-family: $font-light;
