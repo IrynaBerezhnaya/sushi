@@ -32,6 +32,7 @@ require 'inc/checkout.php';
 require 'inc/home-page.php';
 require 'inc/woocommerce.php';
 require 'inc/ajax_handlers.php';
+require 'inc/single-page.php';
 
 /**
  * Add acf options page
@@ -805,7 +806,9 @@ function ib_remove_functions() {
 	remove_action( 'homepage', 'storefront_best_selling_products', 70 );
 	remove_action( 'homepage', 'storefront_popular_products', 50 );
 	remove_action( 'homepage', 'storefront_recent_products', 30 );
+	remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_price', 10 );
+	remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_meta', 40 );
+	remove_action( 'woocommerce_product_additional_information', 'wc_display_product_attributes', 10 );
 }
 
 add_action( 'init', 'ib_remove_functions' );
-
