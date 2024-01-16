@@ -5,6 +5,10 @@
 .single-product div.product {
 	padding: 0 10px;
 
+	@include media-up($bp-L) {
+		padding-top: 100px;
+	}
+
 	.product_title {
 		justify-content: left;
 		padding: 14px 0 14px;
@@ -210,7 +214,7 @@
 	}
 
 	@include media-up($bp-4XL) {
-		margin-left: 12%;
+		margin-left: 10%;
 		height: 446px;
 	}
 
