@@ -53,3 +53,17 @@ function ib_display_gift_product() {
 }
 
 add_action( 'woocommerce_after_add_to_cart_button', 'ib_display_gift_product' );
+
+/**
+ * Modify Display Related Products
+ */
+function ib_display_related_products( $args ) {
+	$args = array(
+		'posts_per_page' => 6,
+		'columns'        => 3,
+	);
+
+	return $args;
+}
+
+add_filter( 'storefront_related_products_args', 'ib_display_related_products' );
