@@ -810,6 +810,8 @@ function ib_remove_functions() {
 	remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_meta', 40 );
 	remove_action( 'woocommerce_product_additional_information', 'wc_display_product_attributes', 10 );
 	add_filter( 'woocommerce_product_tabs', '__return_empty_array', 98 );
+	remove_action( 'woocommerce_after_shop_loop', 'woocommerce_catalog_ordering', 10 );
+	remove_action( 'woocommerce_before_shop_loop', 'woocommerce_catalog_ordering', 10 );
 }
 
 add_action( 'init', 'ib_remove_functions' );
