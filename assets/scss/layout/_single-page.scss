@@ -12,11 +12,15 @@
 		line-height: 110%;
 
 		@include media-up($bp-M) {
-			padding-top: 50px;
+			padding-top: 36px;
 			font-size: 26px;
 		}
 
 		@include media-up($bp-L) {
+			padding: 34px 0;
+		}
+
+		@include media-up($bp-4XL) {
 			padding: 50px 0 34px;
 		}
 	}
@@ -158,7 +162,7 @@
 		}
 
 		@include media-up($bp-2XL) {
-			right: 36%;
+			right: 28%;
 		}
 
 		h3 {
@@ -202,10 +206,11 @@
 		max-height: 446px;
 		height: 365px;
 		margin-top: 10px;
-		margin-left: 10px;
+		margin-left: 9%;
 	}
 
 	@include media-up($bp-4XL) {
+		margin-left: 12%;
 		height: 446px;
 	}
 
@@ -241,6 +246,7 @@
 
 		@include media-up($bp-L) {
 			margin-bottom: 6px;
+			width: 47%;
 		}
 	}
 }
