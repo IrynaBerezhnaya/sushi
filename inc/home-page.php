@@ -65,9 +65,9 @@ function ib_promotion_banner() {
 add_action('storefront_homepage', 'ib_promotion_banner');
 
 /**
- * Display Sets Section on Home Page
+ * Display Sets/Rolls Sections on Home Page
  */
-function ib_display_sets() {
+function ib_display_sets_rolls() {
     if (is_front_page()) :
 	    $category_slugs = array('sets', 'rolls');
         foreach ($category_slugs as $category_slug) {
@@ -107,4 +107,4 @@ function ib_display_sets() {
 
     endif;
 }
-add_action('storefront_before_footer', 'ib_display_sets', 20);
+add_action('storefront_before_footer', 'ib_display_sets_rolls', 20);
