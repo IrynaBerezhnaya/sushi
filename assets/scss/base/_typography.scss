@@ -549,6 +549,10 @@ ul.products.columns-3 li.product {
 		display: block;
 	}
 
+	.col-full {
+		max-width: 1130px;
+	}
+
 	.woocommerce-breadcrumb,
 	.woocommerce-breadcrumb a {
 		font-family: $font-light;
