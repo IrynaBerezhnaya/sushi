@@ -247,3 +247,7 @@
 .single-product div.product .woocommerce-product-gallery img {
 	margin: 0 auto;
 }
+
+.storefront-full-width-content .related.products>h2:first-child {
+	max-width: 836px;
+}
