@@ -581,6 +581,13 @@ ul.products.columns-3 li.product {
 	}
 }
 
+.woocommerce-checkout,
+.woocommerce-cart {
+	.storefront-breadcrumb {
+		display: none;
+	}
+}
+
 .site-main {
 	.storefront-sorting:first-of-type {
 		display: none;
