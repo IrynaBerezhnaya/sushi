@@ -86,7 +86,7 @@ input[type=search],
 input[type=tel],
 input[type=text],
 input[type=url],
-textarea{
+textarea {
 	font-family: $font-light;
 	font-weight: 300;
 	color: $color-18;
@@ -163,24 +163,24 @@ ul.products li.product {
 	margin: 10px auto 10px;
 	max-width: 400px;
 
-    @include media-up($bp-XL) {
+	@include media-up($bp-XL) {
 		border-radius: 50px;
 		margin-bottom: 60px;
 		margin-right: 4.347826087%;
 		max-width: 100%;
 		box-shadow: 0 4px 15px 0 $color-17;
 
-        &:hover {
-            border-radius: 50px;
-            border: 1px solid $color-16;
-            background: $color-2;
-            box-shadow: 0 4px 15px 0 $color-17;
+		&:hover {
+			border-radius: 50px;
+			border: 1px solid $color-16;
+			background: $color-2;
+			box-shadow: 0 4px 15px 0 $color-17;
 
 			.add_to_cart_button {
 				opacity: 1;
 			}
-        }
-    }
+		}
+	}
 
 	&.outofstock {
 		box-shadow: 0 4px 15px 0 $color-17;
@@ -229,7 +229,7 @@ ul.products li.product {
 
 	.attachment-woocommerce_thumbnail {
 		max-width: 200px;
-        margin-top: 28px;
+		margin-top: 28px;
 
 		@include media-up($bp-XL) {
 			max-width: 100%;
@@ -237,7 +237,7 @@ ul.products li.product {
 			height: 215px;
 			object-fit: contain;
 		}
-    }
+	}
 
 	.badges {
 		position: absolute;
@@ -588,18 +588,6 @@ ul.products.columns-3 li.product {
 	}
 }
 
-.site-main {
-	.storefront-sorting:first-of-type {
-		display: none;
-	}
-
-	.storefront-sorting {
-		.woocommerce-result-count {
-			display: none;
-		}
-	}
-}
-
 .woocommerce-pagination {
 	float: unset;
 	border: none;
@@ -625,6 +613,270 @@ ul.products.columns-3 li.product {
 	.next:after,
 	.prev:after {
 		color: $color-10;
+	}
+}
+
+.site-main {
+	.storefront-sorting:first-of-type {
+		.woocommerce-pagination {
+			display: none;
+		}
+	}
+
+	.storefront-sorting {
+		.woocommerce-result-count {
+			display: none;
+		}
+
+		.wpfMainWrapper {
+			display: flex;
+			flex-direction: column;
+			justify-content: flex-start;
+			align-items: end;
+			flex-wrap: wrap;
+			height: 500px;
+
+			#wpfBlock_1,
+			#wpfBlock_2 {
+				width: 25%;
+			}
+
+			#wpfBlock_3,
+			#wpfBlock_4 {
+				width: 70%;
+			}
+		}
+
+		.wpfFilterWrapper {
+			margin: 0;
+
+			.wpfFilterContent {
+				.wfpDescription {
+					font-family: $font-bold;
+					color: $color-1;
+				}
+
+				.wpfPriceFilterRange {
+					max-width: 270px;
+					border-radius: 5px;
+					border: 1px solid $color-1;
+					margin-left: 0;
+					height: 6px;
+
+					.ui-widget-header {
+						background: $color-1 !important;
+					}
+
+					span.ui-slider-handle {
+						background: unset;
+						border: unset !important;
+						top: -1em;
+						margin-left: -0.2em;
+
+						&.ui-state-hover {
+							background: unset !important;
+						}
+
+						&:focus-visible {
+							outline: none;
+						}
+					}
+
+					span.ui-slider-handle:first-of-type {
+						margin-left: -0.9em;
+
+						&:before {
+							content: url(../../assets/img/range-left.svg);
+							display: inline-block;
+							font-size: 0;
+						}
+					}
+
+					span.ui-slider-handle:last-of-type {
+						&:before {
+							content: url(../../assets/img/range-right.svg);
+							display: inline-block;
+							font-size: 0;
+						}
+					}
+				}
+
+				.wpfPriceInputs {
+					margin-top: 20px;
+					max-width: 270px;
+					justify-content: space-between;
+
+					.wpfCurrencySymbol,
+					.wpfFilterDelimeter {
+						display: none;
+					}
+
+					.wpfPriceRangeField {
+						font-family: $font-light !important;
+						border-bottom: 1px solid $color-1 !important;
+						border-radius: 0;
+						width: 120px !important;
+						max-width: 120px;
+						color: $color-1 !important;
+
+						&#wpfMinPrice,
+						&#wpfMaxPrice {
+							border-radius: 0;
+						}
+
+						&#wpfMinPrice {
+							text-align: left !important;
+						}
+
+						&#wpfMaxPrice {
+							text-align: right !important;
+						}
+					}
+				}
+
+				.wpfCheckboxHier {
+					.wpfFilterVerScroll {
+						&.wpfFilterLayoutHor {
+							gap: 7px;
+
+							&>li {
+								padding-right: 0;
+							}
+						}
+
+						li label {
+							position: relative;
+							display: flex;
+							align-items: center;
+							height: 69px;
+							width: 169px !important;
+							padding: 4px !important;
+							transition: $transition-fast;
+
+							.wpfCheckbox label {
+								position: absolute !important;
+								top: 0;
+								right: 0;
+								height: 100% !important;
+								width: 100% !important;
+								border-radius: 25px;
+								border: 1px solid $color-1;
+								box-shadow: 3px 9px 25px 0 $color-12;
+							}
+
+							&::after {
+								position: absolute;
+								right: 18px;
+								bottom: 10px;
+								vertical-align: middle;
+							}
+
+							.wpfFilterTaxNameWrapper {
+								position: relative;
+								font-family: $font-dela-gothic;
+								font-size: 14px;
+								line-height: 110%;
+								color: $color-1;
+								max-width: 110px;
+								display: inline-block;
+							}
+
+							&.active,
+							&:active,
+							&:focus,
+							&:hover {
+								.wpfCheckbox label {
+									background-color: $color-10;
+									border: none;
+								}
+
+								.wpfFilterTaxNameWrapper {
+									color: $color-2;
+								}
+							}
+
+							.wpfCheckbox input[type="checkbox"]:checked + label {
+								background-color: $color-10;
+								border: none;
+							}
+
+							&.wpfLiLabel:has(input[type="checkbox"]:checked) {
+								.wpfFilterTaxNameWrapper {
+									color: $color-2;
+								}
+							}
+						}
+					}
+				}
+			}
+
+			.wpfFilterVerScroll {
+				padding-top: 20px;
+				padding-bottom: 46px;
+
+				.wpfFilterTaxNameWrapper {
+					font-family: $font-light;
+					color: $color-11;
+					font-size: 14px;
+				}
+
+				.wpfCheckbox label {
+					width: 10px !important;
+					height: 10px !important;
+				}
+			}
+
+			&#wpfBlock_2 .wpfCheckbox input[type="checkbox"]:checked + label::before {
+				background: none !important;
+				border: 3px solid $color-1 !important;
+			}
+
+			&#wpfBlock_3 .wpfCheckbox input[type="checkbox"] + label::before,
+			&#wpfBlock_4 .wpfCheckbox input[type="checkbox"] + label::before {
+				display: none !important;
+			}
+
+			&#wpfBlock_4 {
+				li label::after {
+					bottom: 9%;
+					right: 7%;
+					transform: scale(0.7);
+				}
+			}
+		}
+
+		.wpfFilterButtons {
+			position: absolute;
+			top: 46%;
+			left: 2%;
+			max-width: 209px;
+
+			& .wpfButton {
+				font-family: $font-bold;
+				font-size: 16px;
+				width: 209px;
+				color: $color-2;
+				background-color: $color-1;
+				border: 1px solid $color-1;
+				border-radius: 24px;
+				height: 49px;
+				line-height: 1;
+				transition: $transition-ease;
+
+				@include media-up($bp-M) {
+					line-height: 2;
+					height: 62px;
+				}
+
+				&:hover,
+				&:active,
+				&:focus {
+					color: $color-1;
+					background-color: $color-2;
+					border: 1px solid $color-1;
+				}
+			}
+		}
 	}
 }
 

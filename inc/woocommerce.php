@@ -6,10 +6,10 @@
 function ib_display_top_bar() {
 	$top_bar = get_field( 'top_bar', 'option' );
 	if ( ! empty( $top_bar ) ) : ?>
-		<div class="top-bar">
+        <div class="top-bar">
 			<?php echo $top_bar; ?>
 			<?php mb_display_user_city_top_bar(); ?>
-		</div>
+        </div>
 	<?php endif;
 }
 
@@ -24,38 +24,38 @@ function ib_display_header() {
 	$header_socials  = get_field( 'header_socials', 'option' );
 
 	if ( ! empty( $header_logo ) or ! empty( $header_schedule ) or ! empty( $header_socials ) ) : ?>
-		<div class="navigation-branding">
+        <div class="navigation-branding">
 			<?php if ( ! empty( $header_logo ) ) : ?>
-				<div class="site-logo">
-					<a href="<?php echo home_url(); ?>" title="home" rel="home">
-						<img src="<?php echo $header_logo['url']; ?>" height="80" width="287"
-						     alt="<?php bloginfo( 'name' ); ?>"/>
-					</a>
-				</div>
+                <div class="site-logo">
+                    <a href="<?php echo home_url(); ?>" title="home" rel="home">
+                        <img src="<?php echo $header_logo['url']; ?>" height="80" width="287"
+                             alt="<?php bloginfo( 'name' ); ?>"/>
+                    </a>
+                </div>
 			<?php endif; ?>
 			<?php if ( ! empty( $header_schedule ) ) : ?>
-				<div class="header-schedule">
+                <div class="header-schedule">
                                         <span><img
-		                                        src="<?php echo get_stylesheet_directory_uri() ?>/assets/img/time.svg"
-		                                        alt="time"></span>
-					<div><?php echo $header_schedule; ?></div>
-				</div>
+                                                    src="<?php echo get_stylesheet_directory_uri() ?>/assets/img/time.svg"
+                                                    alt="time"></span>
+                    <div><?php echo $header_schedule; ?></div>
+                </div>
 			<?php endif; ?>
 			<?php if ( ! empty( $header_socials ) ) : ?>
-				<div class="header-socials">
+                <div class="header-socials">
 					<?php foreach ( $header_socials as $item ) : ?>
 						<?php if ( ! empty( $item['link'] or $item['text'] ) ) : ?>
-							<div class="social__list">
-								<a href="<?php echo ! empty( $item['link'] ) ? $item['link'] : $item['text']; ?>">
-									<img src="<?php echo esc_url( $item['icon']['url'] ); ?>"
-									     alt="<?php echo $item['icon']['alt']; ?>">
-								</a>
-							</div>
+                            <div class="social__list">
+                                <a href="<?php echo ! empty( $item['link'] ) ? $item['link'] : $item['text']; ?>">
+                                    <img src="<?php echo esc_url( $item['icon']['url'] ); ?>"
+                                         alt="<?php echo $item['icon']['alt']; ?>">
+                                </a>
+                            </div>
 						<?php endif; ?>
 					<?php endforeach; ?>
-				</div>
+                </div>
 			<?php endif; ?>
-		</div>
+        </div>
 	<?php endif;
 }
 
@@ -182,7 +182,7 @@ function ib_display_ingredients() {
 		}
 	}
 	if ( $term_array ) { ?>
-		<p class="ingredients"><?php esc_html_e( 'Cклад: ', 'woocommerce' ); ?><?php echo implode( ', ', $term_array ); ?></p>
+        <p class="ingredients"><?php esc_html_e( 'Cклад: ', 'woocommerce' ); ?><?php echo implode( ', ', $term_array ); ?></p>
 	<?php }
 }
 
@@ -197,7 +197,7 @@ function ib_display_grams() {
 	$weight  = $product->get_weight();
 
 	if ( $weight ) { ?>
-		<p class="grams"><?php echo $weight;
+        <p class="grams"><?php echo $weight;
 			esc_html_e( ' г', 'woocommerce' ); ?></p>
 	<?php }
 }
@@ -335,10 +335,10 @@ function mb_get_all_shipping_zones() {
  */
 function ib_add_show_more() {
 	?>
-	<div class="show-more-button">
-		<a href="<?php echo get_permalink( woocommerce_get_page_id( 'shop' ) ); ?>"
-		   class="button btn-dark-blue"><?php esc_html_e( 'ПОКАЗАТИ БІЛЬШЕ', 'woocommerce' ); ?></a>
-	</div>
+    <div class="show-more-button">
+        <a href="<?php echo get_permalink( woocommerce_get_page_id( 'shop' ) ); ?>"
+           class="button btn-dark-blue"><?php esc_html_e( 'ПОКАЗАТИ БІЛЬШЕ', 'woocommerce' ); ?></a>
+    </div>
 	<?php
 }
 
@@ -436,6 +436,7 @@ function mb_get_user_postcode() {
  */
 function ib_change_breadcrumb_delimiter( $defaults ) {
 	$defaults['delimiter'] = ' &ndash; ';
+
 	return $defaults;
 }
 
@@ -496,3 +497,51 @@ function mb_woocommerce_session_init() {
 
 add_action( 'woocommerce_init', 'mb_woocommerce_session_init' );
 
+/**
+ * Display Filter on Archive Page
+ */
+function ib_display_filter() {
+	echo do_shortcode( '[wpf-filters id=1]' );
+}
+
+add_action( 'woocommerce_before_shop_loop', 'ib_display_filter' );
+
+/**
+ * Display Product thumbnails in Filter
+ */
+function ib_display_taxonomy_thumbnails($taxonomy) {
+	$args = array(
+		'taxonomy'   => $taxonomy,
+		'hide_empty' => false,
+	);
+
+	$the_query = new WP_Term_Query($args); ?>
+
+    <style>
+        <?php foreach ($the_query->get_terms() as $term) {
+            $slug          = $term->slug;
+            $id            = $term->term_id;
+
+            if ($taxonomy === 'product_tag') {
+                $thumbnail_url = get_field('ingredients_image', $taxonomy . '_' . $id);
+            } elseif ($taxonomy === 'product_cat') {
+                $thumbnail_id = get_term_meta($id, 'thumbnail_id', true);
+                $thumbnail_url = wp_get_attachment_url($thumbnail_id);
+            }
+
+            if (empty($thumbnail_url)) {
+                continue;
+            } ?>
+
+        li[data-term-slug="<?php echo $slug; ?>"] label::after {
+            content: url("<?php echo $thumbnail_url; ?>");
+        }
+
+        <?php } ?>
+    </style>
+<?php }
+
+add_action('wp_footer', function () {
+	ib_display_taxonomy_thumbnails('product_tag');
+	ib_display_taxonomy_thumbnails('product_cat');
+});
