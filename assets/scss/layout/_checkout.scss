@@ -76,11 +76,25 @@
 
 			.badges {
 				position: absolute;
+				top: auto;
 				bottom: 20px;
 				display: flex;
 				flex-direction: column;
 				gap: 5px;
 				left: 0;
+
+				a {
+					cursor: context-menu;
+				}
+
+				img {
+					width: 25px;
+					margin: 0;
+				}
+
+				.item-link:hover .item-name {
+					display: none;
+				}
 			}
 		}
 
