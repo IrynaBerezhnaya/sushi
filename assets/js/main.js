@@ -170,6 +170,17 @@ jQuery(document).ready(function ($) {
     }
 
 
+    //Open Filter
+    body.on('click', '.filter-title__js', function (e) {
+        $('.wpfMainWrapper').toggleClass('active');
+        $('.filter-close').toggleClass('active');
+    });
+
+    //Close Filter
+    body.on('click', '.filter-close', function () {
+        $(this).removeClass('active');
+        $('.wpfMainWrapper').removeClass('active');
+    });
 });
 
 /* Menu Slider
