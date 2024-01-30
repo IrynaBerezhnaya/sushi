@@ -501,7 +501,12 @@ add_action( 'woocommerce_init', 'mb_woocommerce_session_init' );
  * Display Filter on Archive Page
  */
 function ib_display_filter() {
-	echo do_shortcode( '[wpf-filters id=1]' );
+	if ( shortcode_exists( 'wpf-filters' ) ) {
+        echo '<h3 class="filter-title filter-title__js">' . __( 'ФІЛЬТР', 'woocommerce' ) . '</h3>';
+        echo '<div class="filter-line"></div>';
+        echo '<div class="filter-close"></div>';
+		echo do_shortcode( '[wpf-filters id=1]' );
+	}
 }
 
 add_action( 'woocommerce_before_shop_loop', 'ib_display_filter' );
