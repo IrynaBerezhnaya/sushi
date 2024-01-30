@@ -830,9 +830,33 @@ ul.products.columns-3 li.product {
 							padding: 4px !important;
 							transition: $transition-fast;
 
+							&.active,
+							&:active,
+							&:focus,
+							&:hover {
+								.wpfCheckbox label {
+									box-shadow: 0 4px 15px 0 $color-17;
+
+								}
+							}
+
 							@include media-up($bp-L) {
 								height: 69px;
 								width: 169px !important;
+
+								&.active,
+								&:active,
+								&:focus,
+								&:hover {
+									.wpfCheckbox label {
+										background-color: $color-10;
+										border: none;
+									}
+
+									.wpfFilterTaxNameWrapper {
+										color: $color-2;
+									}
+								}
 							}
 
 							.wpfCheckbox label {
@@ -861,20 +885,6 @@ ul.products.columns-3 li.product {
 								color: $color-1;
 								max-width: 110px;
 								display: inline-block;
-							}
-
-							&.active,
-							&:active,
-							&:focus,
-							&:hover {
-								.wpfCheckbox label {
-									background-color: $color-10;
-									border: none;
-								}
-
-								.wpfFilterTaxNameWrapper {
-									color: $color-2;
-								}
 							}
 
 							.wpfCheckbox input[type="checkbox"]:checked + label {
