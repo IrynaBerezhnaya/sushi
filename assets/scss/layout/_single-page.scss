@@ -143,13 +143,12 @@
 		box-shadow: 0 4px 15px 0 $color-17;
 		border-radius: 30px;
 		padding: 4px 22px;
-		max-height: 89px;
+		max-height: 100%;
 
 		@include media-up($bp-M) {
-			padding: 22px;
+			padding: 20px;
 			flex-direction: column;
 			max-width: 160px;
-			max-height: 134px;
 			position: absolute;
 			right: 0;
 			bottom: 40%;
@@ -157,7 +156,6 @@
 
 		@include media-up($bp-L) {
 			max-width: 182px;
-			max-height: 160px;
 			bottom: 0;
 		}
 
@@ -177,7 +175,7 @@
 			color: $color-10;
 
 			@include media-up($bp-M) {
-				margin-bottom: 15px;
+				margin-bottom: 10px;
 			}
 		}
 
