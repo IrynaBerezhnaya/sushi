@@ -153,6 +153,26 @@ label {
 
 ul.products {
 	padding: 10px;
+
+	@include media-up($bp-XL) {
+		padding: 10px 0;
+	}
+}
+
+.archive {
+	ul.products {
+		padding: 106px 0 10px;
+
+		.no-products-found {
+			display: block;
+			margin: 0 auto;
+			color: $color-1;
+			text-align: center;
+			font-family: $font-dela-gothic;
+			font-size: 26px;
+			line-height: 150%;
+		}
+	}
 }
 
 ul.products li.product {
@@ -624,26 +644,78 @@ ul.products.columns-3 li.product {
 	}
 
 	.storefront-sorting {
-		.woocommerce-result-count {
+		position: relative;
+		.woocommerce-result-count,
+		.wpfSlugWrapper {
 			display: none;
 		}
 
 		.wpfMainWrapper {
-			display: flex;
-			flex-direction: column;
-			justify-content: flex-start;
-			align-items: end;
-			flex-wrap: wrap;
-			height: 500px;
+			display: none;
+			flex-direction: row;
+			height: 550px;
+			padding-top: 13px;
+
+			&.active {
+				display: block;
+
+				@include media-up($bp-L) {
+					display: flex;
+				}
+			}
+
+			@include media-up($bp-L) {
+				flex-direction: column;
+				justify-content: flex-start;
+				flex-wrap: wrap;
+			}
+
+			@include media-up($bp-2XL) {
+				padding-top: 43px;
+				align-items: end;
+			}
+
+			&:after {
+				content: url(../../assets/img/filter-line.svg);
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				font-size: 0;
+			}
+
+			#wpfBlock_1 {
+				text-align: center;
+			}
 
 			#wpfBlock_1,
 			#wpfBlock_2 {
-				width: 25%;
+				width: 100%;
+
+				@include media-up($bp-L) {
+					width: 30%;
+				}
+
+				@include media-up($bp-2XL) {
+					width: 25%;
+				}
 			}
 
 			#wpfBlock_3,
 			#wpfBlock_4 {
-				width: 70%;
+				width: 100%;
+
+				@include media-up($bp-2XL) {
+					width: 70%;
+				}
+			}
+
+			#wpfBlock_3 {
+				display: none;
+
+				@include media-up($bp-2XL) {
+					display: block;
+				}
 			}
 		}
 
@@ -654,6 +726,11 @@ ul.products.columns-3 li.product {
 				.wfpDescription {
 					font-family: $font-bold;
 					color: $color-1;
+					text-align: center;
+
+					@include media-up($bp-L) {
+						text-align: left;
+					}
 				}
 
 				.wpfPriceFilterRange {
@@ -748,10 +825,15 @@ ul.products.columns-3 li.product {
 							position: relative;
 							display: flex;
 							align-items: center;
-							height: 69px;
-							width: 169px !important;
+							height: 64px;
+							width: 162px !important;
 							padding: 4px !important;
 							transition: $transition-fast;
+
+							@include media-up($bp-L) {
+								height: 69px;
+								width: 169px !important;
+							}
 
 							.wpfCheckbox label {
 								position: absolute !important;
@@ -812,7 +894,11 @@ ul.products.columns-3 li.product {
 
 			.wpfFilterVerScroll {
 				padding-top: 20px;
-				padding-bottom: 46px;
+				padding-bottom: 0;
+
+				@include media-up($bp-L) {
+					padding-bottom: 46px;
+				}
 
 				.wpfFilterTaxNameWrapper {
 					font-family: $font-light;
@@ -838,18 +924,38 @@ ul.products.columns-3 li.product {
 
 			&#wpfBlock_4 {
 				li label::after {
-					bottom: 9%;
+					bottom: 8%;
 					right: 7%;
-					transform: scale(0.7);
+					transform: scale(0.5);
+
+					@include media-up($bp-L) {
+						bottom: 9%;
+						transform: scale(0.7);
+					}
 				}
 			}
 		}
 
 		.wpfFilterButtons {
 			position: absolute;
-			top: 46%;
-			left: 2%;
 			max-width: 209px;
+			margin-left: auto;
+			margin-right: auto;
+			bottom: 10%;
+			left: 0;
+			right: 0;
+
+			@include media-up($bp-L) {
+				bottom: 8%;
+			}
+
+			@include media-up($bp-2XL) {
+				bottom: 0;
+				top: 46%;
+				left: 2%;
+				margin-left: unset;
+				margin-right: unset;
+			}
 
 			& .wpfButton {
 				font-family: $font-bold;
@@ -875,6 +981,54 @@ ul.products.columns-3 li.product {
 					background-color: $color-2;
 					border: 1px solid $color-1;
 				}
+			}
+		}
+
+		.filter-title {
+			display: inline-flex;
+			justify-content: flex-start;
+			align-items: center;
+			padding-left: 2%;
+			margin-bottom: 30px;
+			cursor: pointer;
+
+			&:before {
+				content: url(../../assets/img/filter.svg);
+				display: inline-block;
+				font-size: 0;
+			}
+		}
+
+		.filter-line {
+			position: relative;
+
+			&:after {
+				content: url(../../assets/img/filter-line.svg);
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				font-size: 0;
+			}
+		}
+
+		.filter-close {
+			display: none;
+			position: absolute;
+			top: 12%;
+			right: 0;
+			width: 23px;
+			height: 23px;
+			cursor: pointer;
+			background: center no-repeat url(../../assets/img/cross.svg);
+			z-index: 9;
+
+			@include media-up($bp-L) {
+				right: 25px;
+			}
+
+			&.active {
+				display: block;
 			}
 		}
 	}
