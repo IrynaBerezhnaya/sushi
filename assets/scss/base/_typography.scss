@@ -1044,3 +1044,8 @@ ul.products.columns-3 li.product {
 	}
 }
 
+.single-product {
+	.woocommerce .wc-block-components-notice-banner {
+		display: none !important;
+	}
+}
