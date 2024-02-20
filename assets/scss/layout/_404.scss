@@ -1,0 +1,62 @@
+.error404 {
+	.error-404 {
+		min-height: 560px;
+		position: relative;
+
+		@include media-up($bp-L) {
+			min-height: 90vh;
+		}
+
+		@include media-up($bp-5XL) {
+			min-height: 65vh;
+		}
+
+		&::after {
+			content: " ";
+			background: center no-repeat url(../../assets/img/404-mob.svg);
+			position: absolute;
+			top: 80px;
+			left: 0;
+			right:0;
+			height: 100%;
+			z-index: 9;
+
+			@include media-up($bp-L) {
+				top: 60px;
+				background: center no-repeat url(../../assets/img/404.svg);
+			}
+		}
+	}
+
+	.page-header {
+		h1,
+		h3 {
+			color: $color-10;
+			font-family: $font-dela-gothic;
+			line-height: 160%;
+			letter-spacing: 0;
+			text-align: center;
+		}
+
+		h1 {
+			font-size: 48px;
+			padding: 28px 10px 0;
+		}
+
+		h3 {
+			font-size: 16px;
+			text-transform: uppercase;
+		}
+	}
+
+	.page-content {
+		p {
+			color: $color-11;
+			font-family: $font-base;
+			font-size: 14px;
+			line-height: 160%;
+			letter-spacing: 0;
+			text-align: center;
+		}
+	}
+}
