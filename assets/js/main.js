@@ -222,3 +222,25 @@ function swiperMenu() {
 
 swiperMenu();
 window.addEventListener("resize", swiperMenu);
+
+/* Scroll Event
+**************************************************************/
+document.addEventListener('DOMContentLoaded', function() {
+    const header = document.querySelector('.navigation-branding');
+    let lastScrollTop = 0;
+
+    window.addEventListener('scroll', function() {
+        const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+
+        if (currentScroll > lastScrollTop) {
+            header.classList.add('move-up');
+        } else {
+            if (currentScroll <= 0) {
+                header.classList.remove('move-up');
+            }
+        }
+
+        lastScrollTop = currentScroll;
+    });
+});
+
