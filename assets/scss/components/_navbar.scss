@@ -1,4 +1,12 @@
 /* stylelint-disable */
+.site-header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 100;
+	border-bottom: none;
+}
 
 body .navigation-branding {
 	display: flex;
@@ -7,6 +15,7 @@ body .navigation-branding {
 	max-width: 1528px;
 	margin: 0 auto;
 	padding: 10px;
+	transition: all .3s;
 
 	@include media-up($bp-L) {
 		padding: 10px 20px;
@@ -15,6 +24,18 @@ body .navigation-branding {
 
 	@include media-up($bp-XL) {
 		padding: 14px 20px;
+	}
+
+	&.move-up {
+		margin-top: -74px;
+
+		@include media-up($bp-XL) {
+			margin-top: -86px;
+		}
+
+		@include media-up($bp-XL) {
+			margin-top: -94px;
+		}
 	}
 
 	a {
@@ -196,11 +217,6 @@ body .navigation-branding {
 	.main-navigation {
 		display: none;
 	}
-}
-
-.site-header {
-	border-bottom: none;
-	z-index: 98;
 }
 
 .top-bar {
