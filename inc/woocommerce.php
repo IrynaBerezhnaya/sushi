@@ -13,7 +13,7 @@ function ib_display_top_bar() {
 	<?php endif;
 }
 
-add_action( 'storefront_before_header', 'ib_display_top_bar' );
+add_action( 'storefront_header', 'ib_display_top_bar' );
 
 /**
  * Add Header section
