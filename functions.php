@@ -812,6 +812,7 @@ function ib_remove_functions() {
 	add_filter( 'woocommerce_product_tabs', '__return_empty_array', 98 );
 	remove_action( 'woocommerce_after_shop_loop', 'woocommerce_catalog_ordering', 10 );
 	remove_action( 'woocommerce_before_shop_loop', 'woocommerce_catalog_ordering', 10 );
+	remove_theme_support( 'wc-product-gallery-zoom' );
 }
 
 add_action( 'init', 'ib_remove_functions' );
