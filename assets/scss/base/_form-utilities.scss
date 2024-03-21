@@ -1,0 +1,62 @@
+//font-face
+@mixin font-face($name, $path, $weight: null, $style: null, $exts: ttf) {
+	$src: null;
+
+	$extmods: (
+			eot: "?",
+			svg: "#" + str-replace($name, " ", "_")
+	);
+
+	$formats: (
+			otf: "opentype",
+			ttf: "truetype"
+	);
+
+	@each $ext in $exts {
+		$extmod: if(map-has-key($extmods, $ext), $ext + map-get($extmods, $ext), $ext);
+		$format: if(map-has-key($formats, $ext), map-get($formats, $ext), $ext);
+		$src: append($src, url(quote($path + "." + $extmod)) format(quote($format)), comma);
+	}
+
+	@font-face {
+		font-family: quote($name);
+		font-style: $style;
+		font-weight: $weight;
+		src: $src;
+	}
+}
+
+@include font-face("Hind-Light", "../fonts/form/Hind-Light");
+@include font-face("Hind-Regular", "../fonts/form/Hind-Regular");
+@include font-face("Overpass-Bold", "../fonts/form/Overpass-Bold");
+@include font-face("Overpass-SemiBold", "../fonts/form/Overpass-SemiBold");
+@include font-face("proximanova_regular", "../fonts/form/proximanova_regular");
+
+//Fonts
+$font-hind: 'Hind-Regular', sans-serif;
+$font-hind-light: 'Hind-Light', sans-serif;
+$font-overpass-bold: 'Overpass-Bold', sans-serif;
+$font-overpass-semibold: 'Overpass-SemiBold', sans-serif;
+$font-proximanova: 'proximanova_regular', sans-serif;
+
+//Colors
+$color-light-blue: rgb(247, 249, 253);
+$color-bright-blue: #5879ef;
+$color-blue: #5b6c8c;
+$color-light-graphite: #8b96ac;
+$color-graphite: #2a3b53;
+$color-red: #ba5b5b;
+
+//Responsive
+$bp-MS: 375px;
+$bp-S: 480px;
+$bp-SM: 550px;
+$bp-M: 768px;
+$bp-ML: 834px;
+$bp-L: 992px;
+$bp-XL: 1200px;
+$bp-2XL: 1366px;
+$bp-3XL: 1440px;
+$bp-4XL: 1600px;
+$bp-5XL: 1920px;
+$bp-6XL: 2200px;
