@@ -1,10 +1,4 @@
 document.addEventListener("DOMContentLoaded", function() {
-    if (window.jQuery) {
-        jQuery('#contact-city').select2({
-            placeholder: "Choise your city *"
-        });
-    }
-
     const form = document.getElementById('contact-form');
     const submit = document.getElementById('form-submit');
 
@@ -21,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function() {
         const phone = document.getElementById('contact-phone');
         const password = document.getElementById('contact-password');
         const confirmPassword = document.getElementById('contact-confirm-password');
-        const city = document.getElementById('contact-city');
+        const selectCity = document.getElementById('select-city');
         const privacyPolicy = document.getElementById('privacy-policy');
 
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -83,12 +77,12 @@ document.addEventListener("DOMContentLoaded", function() {
             confirmPassword.classList.remove('input-error');
         }
 
-        if (city.value === '') {
+        if (selectCity.value === '') {
             document.getElementById('city-error').textContent = 'Please choose your city';
-            city.classList.add('input-error');
+            selectCity.classList.add('input-error');
             isValid = false;
         } else {
-            city.classList.remove('input-error');
+            selectCity.classList.remove('input-error');
         }
 
         if (!privacyPolicy.checked) {
@@ -114,7 +108,6 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
-
     document.querySelectorAll('.toggle-password__js').forEach(function(toggleButton) {
         toggleButton.addEventListener('click', function() {
             this.classList.toggle('fa-eye');
@@ -130,6 +123,4 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
     });
-
-
 });
