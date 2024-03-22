@@ -70,8 +70,7 @@
 				margin-top: 30px;
 			}
 
-			.contact-form__input,
-			.select2-container {
+			.contact-form__input {
 				font-family: $font-hind;
 				color: $color-graphite;
 				font-size: 20px;
@@ -85,8 +84,7 @@
 					font-size: 24px;
 				}
 
-				&::placeholder,
-				.select2-selection__placeholder {
+				&::placeholder {
 					font-family: $font-hind;
 					font-size: 20px;
 					line-height: 150%;
@@ -162,16 +160,30 @@
 	}
 }
 
-.select2-container--default .select2-selection--single {
-	background-color: transparent;
-	border: none;
+.multiselect__tags {
+	padding: 0;
+	border: 0;
+	background: none;
 
-	.select2-selection__rendered {
+	.multiselect__placeholder {
+		font-family: $font-hind;
+		font-size: 20px;
+		line-height: 150%;
+		color: $color-light-graphite;
+
+		@include media-up($bp-L) {
+			font-size: 24px;
+		}
+	}
+
+	.multiselect__single {
+		background-color: transparent;
+		vertical-align: text-top;
 		font-family: $font-hind;
 		color: $color-graphite;
 		font-size: 20px;
 		line-height: 150%;
-		padding: 0;
+		box-sizing: border-box;
 
 		@include media-up($bp-L) {
 			font-size: 24px;
@@ -179,7 +191,8 @@
 	}
 }
 
-.select2-container--default .select2-search--dropdown .select2-search__field {
-	border: none;
-	border-bottom: 1px solid $color-light-graphite;
+.multiselect__select {
+	&::before {
+		top: 100%;
+	}
 }
