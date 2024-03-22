@@ -3,10 +3,12 @@
  * Connecting scripts and styles
  */
 function add_scripts_and_styles() {
-	wp_enqueue_style('select2', 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css', array(), '4.1.0-rc.0');
-	wp_enqueue_script('select2', 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js', 'jquery', '4.1.0-rc.0');
-
 	wp_enqueue_script( 'contact-form', get_stylesheet_directory_uri() . '/assets/js/contact-form.js', 'jquery', '1.0.0');
+
+	wp_enqueue_script( 'vue', 'https://cdn.jsdelivr.net/npm/vue@2.7.8/dist/vue.js', array(), false );
+
+	wp_enqueue_style( 'vue-multiselect', 'https://unpkg.com/vue-multiselect@2.1.6/dist/vue-multiselect.min.css', array(), false );
+	wp_enqueue_script( 'vue-multiselect', 'https://unpkg.com/vue-multiselect@2.1.6', array(), false );
 
 	wp_localize_script( 'contact-form', 'ib_localize', array(
 			'admin_url' => admin_url( 'admin-ajax.php' ),
@@ -35,6 +37,14 @@ function ib_submit_contact_form_ajax_handler() {
 
 	if (!is_email($email)) {
 		$errors[] = 'Email is invalid.';
+	}
+
+	if (empty($phone)) {
+		$errors[] = 'Phone is invalid.';
+	}
+
+	if (empty($city)) {
+		$errors[] = 'City is invalid.';
 	}
 
 	if (!empty($password) && $password !== $confirm_password) {
