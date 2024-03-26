@@ -108,6 +108,7 @@
 				position: absolute;
 				top: 50%;
 				right: 5%;
+				cursor: pointer;
 			}
 		}
 
@@ -194,5 +195,24 @@
 .multiselect__select {
 	&::before {
 		top: 100%;
+	}
+}
+
+.multiselect__option--highlight {
+	background: none;
+	outline: none;
+	color: inherit;
+
+	&:after {
+		background: none;
+	}
+}
+
+.multiselect__option--selected.multiselect__option--highlight {
+	background: none;
+	color: inherit;
+
+	&:after {
+		background: none;
 	}
 }
