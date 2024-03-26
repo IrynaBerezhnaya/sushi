@@ -91,6 +91,8 @@ document.addEventListener("DOMContentLoaded", function() {
         }
 
         if (isValid) {
+            submit.value = 'Submiting...';
+
             const formData = new FormData(form);
             formData.append('action', 'ib_submit_contact_form');
 
@@ -100,10 +102,17 @@ document.addEventListener("DOMContentLoaded", function() {
             })
                 .then(response => response.json())
                 .then(data => {
-                    console.log(data);
+                    if (data.success) {
+                        const successMessage = document.createElement('h2');
+                        successMessage.textContent = 'Thank you for your submission.';
+                        form.innerHTML = '';
+                        form.appendChild(successMessage);
+                    } else {
+                        submit.value = 'Submit';
+                    }
                 })
                 .catch((error) => {
-                    console.error('Error:', error);
+                    submit.value = 'Submit';
                 });
         }
     });
