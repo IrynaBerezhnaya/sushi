@@ -1052,3 +1052,21 @@ ul.products.columns-3 li.product {
 		display: none !important;
 	}
 }
+
+.page-template-contact-form {
+	.site-header {
+		display: none;
+	}
+
+	footer {
+		display: none;
+	}
+
+	.adfy__show-woofc {
+		display: none !important;
+	}
+
+	.storefront-breadcrumb {
+		display: none;
+	}
+}
