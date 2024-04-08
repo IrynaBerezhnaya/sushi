@@ -609,6 +609,17 @@ ul.products.columns-3 li.product {
 	}
 }
 
+.woocommerce-cart {
+	.wc-proceed-to-checkout {
+		margin-top: 1.8rem;
+
+		.button.checkout-button {
+			font-size: inherit;
+			line-height: 2;
+		}
+	}
+}
+
 .woocommerce-pagination {
 	float: unset;
 	border: none;
